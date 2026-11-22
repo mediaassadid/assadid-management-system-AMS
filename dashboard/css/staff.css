@@ -1,0 +1,97 @@
+.staff-summary { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-bottom: 24px; }
+.staff-summary .summary-card { position: relative; min-height: 132px; padding: 20px; overflow: hidden; border: 1px solid rgba(11,61,46,.06); transition: transform .15s ease-out, box-shadow .15s ease-out; }
+.staff-summary .summary-card::after { content: ''; position: absolute; right: -22px; bottom: -28px; width: 96px; height: 96px; border-radius: 50%; background: rgba(201,162,39,.08); }
+.staff-summary .summary-card:hover { transform: translateY(-2px); box-shadow: 0 14px 28px rgba(6,42,32,.12); }
+.summary-card-top { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.staff-summary .summary-label { font-size: 10px; letter-spacing: .01em; }
+.staff-summary .summary-card strong { position: relative; z-index: 1; display: block; margin-top: 14px; font-size: 30px; letter-spacing: -.03em; }
+.staff-summary .summary-note { position: relative; z-index: 1; display: block; margin-top: 7px; font-size: 9px; }
+.summary-icon { position: relative; z-index: 1; display: grid; place-items: center; width: 38px; height: 38px; flex: 0 0 38px; border-radius: 13px; background: var(--sand); color: var(--emerald); }
+.summary-icon svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.staff-summary-card.teachers .summary-icon { background: #F8F1D8; color: var(--gold-dark); }
+.staff-summary-card.employees .summary-icon { background: #EAF2EE; color: var(--emerald); }
+.staff-summary-card.attention .summary-icon { background: #F8EBDD; color: #A35A22; }
+.staff-summary-card.attention::after { background: rgba(163,90,34,.08); }
+.staff-table-card { overflow: hidden; }
+.staff-table-card .student-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 92px; padding: 20px 28px; }
+.staff-table-card .student-toolbar .panel-title { margin-bottom: 5px; }
+.staff-table-card .student-toolbar .panel-subtitle { margin-bottom: 0; }
+.staff-table-card .toolbar-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 8px; flex: 0 0 auto; }
+.staff-table-card .toolbar-actions .button { min-height: 40px; padding: 0 16px; }
+.staff-filters { display: grid; grid-template-columns: minmax(240px, 1fr) 160px 160px auto; align-items: end; gap: 16px; padding: 18px 28px; background: var(--ivory); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.staff-filters > label:not(.search-wrap) { display: flex; flex-direction: column; gap: 5px; min-width: 0; height: 58px; }
+.staff-filters .search-wrap { position: relative; display: flex; flex-direction: column; justify-content: end; align-self: end; height: 58px; }
+.staff-filters .search-wrap input, .staff-filters select { width: 100%; height: 40px; border: 1px solid var(--line); border-radius: var(--radius-pill); background: var(--white); color: var(--ink); font: inherit; font-size: 10px; }
+.staff-filters .search-wrap input { padding: 0 38px 0 40px; outline: none; appearance: none; -webkit-appearance: none; line-height: 40px; }
+.staff-filters .search-wrap input::placeholder { color: var(--muted); opacity: .8; }
+.staff-filters .search-wrap input:focus, .staff-filters select:focus { outline: 2px solid var(--gold-light); outline-offset: 1px; border-color: var(--gold-dark); box-shadow: 0 0 0 3px rgba(230,199,102,.12); }
+.staff-filters .search-wrap input::-webkit-search-cancel-button { width: 16px; height: 16px; margin-right: 2px; opacity: .55; cursor: pointer; }
+.staff-filters .search-wrap input::-webkit-search-decoration { -webkit-appearance: none; }
+.staff-filters .search-wrap svg { position: absolute; left: 14px; width: 17px; height: 17px; overflow: visible; stroke: var(--muted); fill: none; stroke-width: 1.8; pointer-events: none; }
+.staff-filters .reset-button { align-self: end; min-height: 40px; padding: 0 16px; border: 1px solid var(--emerald); border-radius: var(--radius-pill); background: transparent; color: var(--emerald); font-size: 10px; font-weight: 600; line-height: 1; white-space: nowrap; cursor: pointer; transition: background .15s ease-out, color .15s ease-out, border-color .15s ease-out, transform .15s ease-out; }
+.staff-filters .reset-button:hover { background: var(--emerald); color: var(--white); border-color: var(--emerald); transform: translateY(-1px); }
+.staff-filters .reset-button:active { transform: translateY(0); }
+.staff-filters .reset-button:focus-visible { outline: 3px solid var(--gold-light); outline-offset: 3px; }
+.staff-filters label select { min-width: 0; padding: 0 32px 0 14px; outline: none; }
+.staff-filters label:not(.search-wrap) .filter-label { margin-bottom: 0; }
+.staff-table-card table { min-width: 980px; }
+.staff-table-card th, .staff-table-card td { padding: 13px 20px; vertical-align: middle; }
+.staff-table-card th:first-child, .staff-table-card td:first-child { padding-left: 28px; }
+.staff-table-card th:last-child, .staff-table-card td:last-child { padding-right: 28px; }
+.staff-table-card thead th { background: var(--ivory); color: var(--muted); font-size: 9px; letter-spacing: .08em; }
+.staff-table-card tbody tr { transition: background .15s ease-out; }
+.staff-table-card tbody tr:hover { background: #FCFAF4; }
+.staff-table-card tbody td { color: var(--ink); font-size: 10px; }
+.staff-table-card tbody td:nth-child(2) { color: var(--muted); font-variant-numeric: tabular-nums; letter-spacing: .02em; }
+.staff-table-card tbody td:nth-child(4) { color: var(--muted); }
+.staff-table-card .person { min-width: 220px; }
+.staff-table-card .person-avatar { width: 36px; height: 36px; flex-basis: 36px; background: var(--emerald); color: var(--gold-light); font-size: 10px; }
+.staff-table-card .person-name { font-size: 10px; }
+.staff-table-card .person-id { color: var(--muted); font-size: 9px; }
+.staff-table-card tbody tr { height: 62px; }
+.staff-table-card .person { white-space: nowrap; }
+.staff-table-card .person-name, .staff-table-card .person-id { display: inline; }
+.staff-table-card .person-id { margin-left: 6px; }
+.staff-table-card .status::before { background: var(--success); }
+.staff-table-card .status.alumni::before { background: var(--gold); }
+.staff-table-card .status.cuti::before { background: var(--gold-dark); }
+.staff-type-badge { display: inline-flex; align-items: center; min-height: 26px; padding: 0 10px; border-radius: var(--radius-pill); font-size: 9px; font-weight: 600; }
+.staff-type-badge.teacher { color: var(--emerald); background: var(--sand); }
+.staff-type-badge.employee { color: var(--gold-dark); background: #F8F1D8; }
+.staff-table-card .status.inactive::before { background: var(--muted); }
+.staff-table-card .status.cuti::before { background: var(--gold-dark); }
+.staff-table-card .row-action { min-height: 40px; white-space: nowrap; }
+.staff-modal[hidden] { display: none !important; }
+.staff-modal { position: fixed; inset: 0; z-index: 20; display: grid; place-items: center; padding: 24px; }
+.staff-modal-backdrop { position: absolute; inset: 0; background: rgba(6,42,32,.62); backdrop-filter: blur(3px); }
+.staff-dialog { position: relative; display: flex; flex-direction: column; width: min(980px, 100%); max-height: min(880px, calc(100vh - 48px)); overflow: hidden; background: var(--white); border: 1px solid rgba(11,61,46,.1); border-radius: var(--radius-lg); box-shadow: 0 24px 70px rgba(6,42,32,.28); }
+.staff-dialog-header { display: flex; align-items: start; justify-content: space-between; gap: 20px; padding: 24px 28px 18px; border-bottom: 1px solid var(--line); }
+.staff-dialog-header .eyebrow { margin-bottom: 5px; }
+.staff-dialog-header h2 { margin: 0 0 5px; font-size: 20px; }
+.staff-dialog-header p:last-child { margin: 0; color: var(--muted); font-size: 10px; }
+.modal-close { width: 36px; height: 36px; flex: 0 0 36px; border: 1px solid var(--line); border-radius: 50%; background: var(--ivory); color: var(--emerald); font-size: 23px; line-height: 1; cursor: pointer; }
+.modal-close:hover { background: var(--sand); }
+.staff-dialog form { display: flex; flex-direction: column; min-height: 0; }
+.staff-form-nav { display: flex; flex: 0 0 auto; align-items: center; gap: 8px; min-height: 64px; overflow-x: auto; padding: 12px 28px; border-bottom: 1px solid var(--line); background: var(--ivory); scrollbar-color: var(--gold) transparent; scrollbar-width: thin; }
+.staff-form-nav a { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto; min-height: 36px; padding: 0 13px; border: 1px solid var(--line); border-radius: var(--radius-pill); color: var(--muted); background: var(--white); font-size: 9px; font-weight: 600; line-height: 1; text-decoration: none; white-space: nowrap; transition: color .15s ease-out, border-color .15s ease-out, background .15s ease-out, transform .15s ease-out; }
+.staff-form-nav a:hover { color: var(--emerald); border-color: var(--gold); background: #FFFDF5; transform: translateY(-1px); }
+.staff-form-nav a:focus-visible { outline: 3px solid var(--gold-light); outline-offset: 2px; }
+.staff-form-nav a.active { color: var(--white); border-color: var(--emerald); background: var(--emerald); box-shadow: 0 4px 10px rgba(11,61,46,.16); }
+.staff-form-body { overflow-y: auto; padding: 20px 28px; scrollbar-color: var(--gold) var(--sand); scrollbar-width: thin; }
+.staff-form-body fieldset { margin: 0 0 20px; padding: 18px; border: 1px solid var(--line); border-radius: var(--radius-md); }
+.staff-form-body fieldset:last-child { margin-bottom: 0; }
+.staff-form-body legend { padding: 0 8px; color: var(--emerald); font-size: 12px; font-weight: 700; }
+.staff-form-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.form-field { display: flex; flex-direction: column; gap: 5px; min-width: 0; color: var(--muted); font-size: 10px; font-weight: 500; }
+.form-field input, .form-field select, .form-field textarea { width: 100%; min-height: 40px; padding: 0 12px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--white); color: var(--ink); font: inherit; font-size: 10px; outline: none; }
+.form-field textarea { min-height: 72px; padding-top: 10px; resize: vertical; }
+.form-field input[type=file] { height: auto; padding: 10px; }
+.form-field input:focus, .form-field select:focus, .form-field textarea:focus { border-color: var(--gold-dark); outline: 2px solid var(--gold-light); outline-offset: 1px; }
+.span-2 { grid-column: span 2; }
+.span-3 { grid-column: span 3; }
+.form-subheading { align-self: end; padding-bottom: 3px; color: var(--gold-dark); font-size: 10px; font-weight: 700; }
+.form-help { margin: 0 0 14px; color: var(--muted); font-size: 10px; }
+.staff-dialog-footer { display: flex; justify-content: flex-end; gap: 10px; padding: 16px 28px; border-top: 1px solid var(--line); background: var(--white); }
+@media (max-width: 1024px) { .staff-summary { grid-template-columns: repeat(2, minmax(0, 1fr)); } .staff-filters { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 768px) { .staff-dialog { max-height: calc(100vh - 24px); } .staff-modal { padding: 12px; } .staff-dialog-header { padding: 20px 16px 16px; } .staff-form-nav { min-height: 58px; padding: 10px 16px; } .staff-form-nav a { min-height: 34px; padding: 0 11px; } .staff-form-body { padding: 16px; } .staff-form-grid { grid-template-columns: 1fr 1fr; } .span-3 { grid-column: span 2; } .staff-dialog-footer { padding: 14px 16px; } .staff-table-card .student-toolbar { flex-direction: column; align-items: stretch; gap: 16px; min-height: 0; padding: 20px 16px 16px; } .staff-table-card .toolbar-actions { width: 100%; justify-content: stretch; } .staff-table-card .toolbar-actions .button { flex: 1; } .staff-filters { grid-template-columns: 1fr; padding: 16px; } .staff-filters > label:not(.search-wrap) { height: auto; } .staff-filters .search-wrap, .staff-filters .reset-button { align-self: stretch; } }
+@media (max-width: 480px) { .staff-form-grid { grid-template-columns: 1fr; } .span-2, .span-3 { grid-column: span 1; } .staff-dialog-header h2 { font-size: 17px; } .staff-dialog-footer { flex-direction: column-reverse; } .staff-dialog-footer .button { width: 100%; } .staff-summary { gap: 10px; } .staff-summary .summary-card { min-height: 124px; padding: 15px 12px; } .staff-summary .summary-card strong { margin-top: 10px; font-size: 25px; } .summary-icon { width: 34px; height: 34px; flex-basis: 34px; border-radius: 11px; } .summary-icon svg { width: 18px; height: 18px; } }
