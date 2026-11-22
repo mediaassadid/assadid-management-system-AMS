@@ -54,6 +54,14 @@
       </form>
     </section>
   </div>
+  <div class="staff-detail-modal" id="staffDetailModal" hidden>
+    <div class="staff-modal-backdrop" data-close-staff-detail></div>
+    <section class="staff-detail-dialog" role="dialog" aria-modal="true" aria-labelledby="staffDetailTitle">
+      <div class="staff-detail-header"><div><p class="eyebrow">Profil personel</p><h2 id="staffDetailTitle">Detail Guru / Pegawai</h2><p id="staffDetailSubtitle">Informasi data mock personel</p></div><button class="modal-close" type="button" aria-label="Tutup detail" data-close-staff-detail>&times;</button></div>
+      <div class="staff-detail-content"><div class="staff-profile-card"><span class="staff-detail-avatar" id="staffDetailAvatar">--</span><div><strong id="staffDetailName">-</strong><span id="staffDetailRole">-</span></div></div><dl class="staff-detail-grid"><div><dt>NIP</dt><dd id="staffDetailNip">-</dd></div><div><dt>Jenis personel</dt><dd id="staffDetailType">-</dd></div><div><dt>Unit / Jabatan</dt><dd id="staffDetailUnit">-</dd></div><div><dt>Status</dt><dd id="staffDetailStatus">-</dd></div></dl><div class="staff-detail-sections" id="staffDetailSections"></div><p class="staff-detail-note">Data ini masih berupa data mock sementara dan dapat dikembangkan ke profil lengkap setelah database terhubung.</p></div>
+      <div class="staff-dialog-footer"><button class="button button-secondary" type="button" data-close-staff-detail>Tutup</button><button class="button button-primary" id="editStaffButton" type="button">Edit Data</button></div>
+    </section>
+  </div>
   <div class="toast" id="toast" role="status" aria-live="polite"></div><script src="../js/staff.js"></script>
 </body>
 </html>
