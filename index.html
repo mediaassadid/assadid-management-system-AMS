@@ -1,0 +1,1207 @@
+﻿<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pondok Modern As-Sadid — Program Tahfidzul Qur'an</title>
+
+  <!-- Google Fonts: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Font Awesome for crisp UI & social icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Poppins', 'sans-serif'],
+            display: ['Poppins', 'sans-serif'],
+          },
+          colors: {
+            tealBrand: {
+              DEFAULT: '#0B3D2E',
+              hover: '#062A20',
+              light: '#F1EBDA',
+            },
+            amberAccent: {
+              DEFAULT: '#C9A227',
+              soft: '#E6C766',
+              hover: '#8A6D14',
+            },
+            slateSurface: {
+              DEFAULT: '#FAF7EF',
+              alt: '#F1EBDA',
+              footer: '#FAF7EF',
+            },
+          },
+          boxShadow: {
+            soft: '0 18px 45px -15px rgba(15, 23, 42, 0.08)',
+            card: '0 12px 32px -8px rgba(15, 23, 42, 0.06)',
+            float: '0 16px 36px -6px rgba(15, 23, 42, 0.12)',
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: #1C2B25;
+      background-color: #FFFFFF;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, .font-heading {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* Subtle floating animations for hero & feature badges */
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-7px); }
+    }
+    @keyframes floatDelayed {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(6px); }
+    }
+    .animate-float {
+      animation: floatSlow 4.5s ease-in-out infinite;
+    }
+    .animate-float-delayed {
+      animation: floatDelayed 5.2s ease-in-out infinite;
+    }
+
+    /* Custom subtle scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #FAF7EF;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #F1EBDA;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #C9A227;
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-tealBrand selection:text-white">
+
+  <!-- =====================================================================
+       1. NAVBAR
+  ====================================================================== -->
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-100/80 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#beranda" class="flex items-center gap-2.5 group focus:outline-none">
+        <img src="assets/logo.png" alt="Logo Pondok Modern As-Sadid" class="w-12 h-12 object-contain transition-transform duration-300 group-hover:scale-105" />
+        <div class="flex flex-col">
+          <span class="font-heading font-extrabold text-lg sm:text-xl tracking-tight text-[#1C2B25] leading-none">
+            As-Sadid
+          </span>
+          <span class="text-[10px] font-semibold tracking-widest uppercase text-tealBrand mt-0.5">
+            Pondok Modern
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Center Nav Links -->
+      <nav class="hidden md:flex items-center gap-9 text-sm font-medium text-[#4A5568]">
+        <a href="#beranda" class="text-[#1C2B25] font-semibold hover:text-tealBrand transition-colors">Beranda</a>
+        <a href="#jurusan" class="hover:text-tealBrand transition-colors">Program Pendidikan</a>
+        <a href="#prestasi" class="hover:text-tealBrand transition-colors">Prestasi</a>
+        <a href="#fasilitas" class="hover:text-tealBrand transition-colors">Tentang Pondok</a>
+      </nav>
+
+      <!-- Right Action Buttons -->
+      <div class="hidden md:flex items-center gap-4">
+        <button onclick="openAuthModal('Portal Santri')" class="text-sm font-semibold text-[#1C2B25] hover:text-tealBrand transition-colors">
+          Portal Santri
+        </button>
+        <button onclick="openAuthModal('Penerimaan Santri 2026/2027')" class="bg-tealBrand hover:bg-tealBrand-hover text-white text-sm font-semibold px-6 py-2.5 rounded-full shadow-sm hover:shadow transition-all">
+          Penerimaan Santri
+        </button>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button id="mobileMenuBtn" aria-label="Buka Menu" class="md:hidden p-2.5 rounded-xl text-slate-700 hover:bg-slate-100 transition-colors">
+        <i class="fa-solid fa-bars text-lg"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Dropdown Navigation -->
+    <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-slate-100 px-6 pt-3 pb-6 space-y-4 shadow-lg">
+      <div class="flex flex-col space-y-3 text-sm font-medium text-slate-700">
+        <a href="#beranda" class="mobile-link py-1.5 text-tealBrand font-semibold">Beranda</a>
+        <a href="#jurusan" class="mobile-link py-1.5 hover:text-tealBrand">Program Pendidikan</a>
+        <a href="#prestasi" class="mobile-link py-1.5 hover:text-tealBrand">Prestasi</a>
+        <a href="#fasilitas" class="mobile-link py-1.5 hover:text-tealBrand">Tentang Pondok</a>
+      </div>
+      <div class="pt-3 border-t border-slate-100 flex items-center gap-3">
+        <button onclick="openAuthModal('Portal Santri')" class="flex-1 py-2.5 rounded-full border border-slate-200 text-sm font-semibold text-slate-800">
+          Portal Santri
+        </button>
+        <button onclick="openAuthModal('Penerimaan Santri 2026/2027')" class="flex-1 py-2.5 rounded-full bg-tealBrand text-white text-sm font-semibold">
+          Penerimaan Santri
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- =====================================================================
+         2. HERO SECTION
+    ====================================================================== -->
+    <section id="beranda" class="pt-4 pb-6 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-7xl mx-auto bg-slateSurface rounded-[2rem] md:rounded-[2.75rem] px-6 sm:px-12 lg:px-16 pt-12 pb-20 lg:py-16 relative overflow-hidden">
+        
+        <!-- Decorative Top-Right Orange Semi-Circle -->
+        <div class="hidden sm:block absolute top-10 right-10 w-20 h-10 bg-amberAccent rounded-b-full rotate-[35deg] opacity-95 pointer-events-none"></div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          
+          <!-- Left Column: Copy, CTAs & Stats -->
+          <div class="lg:col-span-6 space-y-7 z-10 text-left">
+            <h1 class="font-heading font-extrabold text-4xl sm:text-5xl xl:text-[3.3rem] leading-[1.15] text-[#1C2B25] tracking-tight">
+              Menghafal Al-Qur'an, <br class="hidden sm:inline" />membentuk akhlak mulia bersama <br />
+              <span class="inline-block mt-2 bg-amberAccent text-white px-6 py-1.5 rounded-full -rotate-2 shadow-sm transform transition-transform hover:rotate-0">
+                As-Sadid
+              </span>
+            </h1>
+
+            <p class="text-[#718096] text-base sm:text-lg leading-relaxed max-w-lg">
+              Program Tahfidzul Qur'an yang memadukan hafalan Al-Qur'an, pemahaman diniyah, pendidikan formal, dan pembinaan akhlak dalam lingkungan pondok yang aman serta disiplin.
+            </p>
+
+            <!-- CTA Row -->
+            <div class="flex flex-wrap items-center gap-5 pt-1">
+              <button onclick="openAuthModal('Penerimaan Santri 2026/2027')" class="bg-tealBrand hover:bg-tealBrand-hover text-white font-semibold text-sm sm:text-base px-8 py-3.5 rounded-full shadow-md hover:shadow-lg transition-all">
+                Penerimaan Santri
+              </button>
+
+              <button onclick="openVideoModal('Profil Pondok Pondok Modern As-Sadid', 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80')" class="group flex items-center gap-3.5 text-sm sm:text-base font-semibold text-[#1C2B25] hover:text-tealBrand transition-colors">
+                <span class="w-12 h-12 rounded-full bg-white shadow-card flex items-center justify-center text-amberAccent group-hover:scale-110 transition-transform">
+                  <i class="fa-solid fa-play text-sm ml-0.5"></i>
+                </span>
+                <span>Profil Pondok</span>
+              </button>
+            </div>
+
+            <!-- Stats Row -->
+            <div class="pt-6 grid grid-cols-3 gap-4 sm:gap-8 max-w-lg border-t border-slate-200/70">
+              <div>
+                <div class="font-heading font-extrabold text-2xl sm:text-3xl text-tealBrand">1.250+</div>
+                <div class="text-xs sm:text-sm font-medium text-[#718096] mt-0.5">Santri Aktif</div>
+              </div>
+              <div>
+                <div class="font-heading font-extrabold text-2xl sm:text-3xl text-tealBrand">85+</div>
+                <div class="text-xs sm:text-sm font-medium text-[#718096] mt-0.5">Pendidik & Pengasuh</div>
+              </div>
+              <div>
+                <div class="font-heading font-extrabold text-2xl sm:text-3xl text-tealBrand">98%</div>
+                <div class="text-xs sm:text-sm font-medium text-[#718096] mt-0.5">Santri Berprestasi</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Santri Portrait + Organic Shapes + Floating UI Widgets -->
+          <div class="lg:col-span-6 relative flex justify-center items-center min-h-[380px] sm:min-h-[450px]">
+            
+            <!-- Organic Background Shapes -->
+            <div class="absolute w-64 h-64 sm:w-80 sm:h-80 rounded-full bg-[#BCE0F7] -top-2 left-6 sm:left-14 pointer-events-none"></div>
+            <div class="absolute w-60 h-60 sm:w-72 sm:h-72 rounded-full bg-tealBrand bottom-2 right-4 sm:right-10 pointer-events-none"></div>
+
+            <!-- Main High School Santri Portrait -->
+            <div class="relative z-10 w-64 sm:w-80 h-[350px] sm:h-[420px] rounded-b-full overflow-hidden flex items-end justify-center">
+              <img
+                src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=85"
+                alt="Santri As-Sadid tersenyum membawa buku dan tablet"
+                onerror="this.src='https://placehold.co/600x750/025951/ffffff?text=Santri+As-Sadid'"
+                class="w-full h-full object-cover object-center rounded-t-[8rem] shadow-lg"
+              />
+            </div>
+
+            <!-- Floating Card 1: Top-Left Academic Achievement Pie Chart Card -->
+            <div class="animate-float absolute top-6 left-2 sm:left-8 z-20 bg-white p-3.5 rounded-2xl shadow-float flex items-center justify-center">
+              <div class="w-10 h-10 rounded-full relative flex items-center justify-center" style="background: conic-gradient(#C9A227 0% 35%, #0B3D2E 35% 75%, #3B82F6 75% 100%);">
+                <div class="w-4 h-4 bg-white rounded-full"></div>
+              </div>
+            </div>
+
+            <!-- Floating Card 2: Top-Right Accreditation Mini-Card -->
+            <div class="animate-float-delayed absolute top-20 -right-1 sm:right-2 z-20 bg-white px-3.5 py-2.5 rounded-2xl shadow-float flex items-center gap-2.5 max-w-[215px]">
+              <div class="w-9 h-9 rounded-full bg-tealBrand-light text-tealBrand flex items-center justify-center font-heading font-extrabold text-sm shrink-0">
+                A
+              </div>
+              <div>
+                <p class="text-[11px] font-bold text-slate-800 leading-tight">Akreditasi A (Unggul)</p>
+                <div class="flex items-center gap-0.5 text-amberAccent text-[10px] mt-1">
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Floating Card 3: Bottom-Left Graduation Rate & Santri Avatars -->
+            <div class="animate-float-delayed absolute bottom-10 left-0 sm:left-4 z-20 bg-white p-3.5 rounded-2xl shadow-float w-52 sm:w-56">
+              <div class="flex items-center justify-between mb-1.5">
+                <span class="text-[11px] font-bold text-slate-700">Kelulusan SNBP & UTBK</span>
+                <span class="text-[11px] font-extrabold text-tealBrand">98%</span>
+              </div>
+              <div class="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden mb-3">
+                <div class="h-full w-[98%] bg-amberAccent rounded-full"></div>
+              </div>
+              <div class="flex items-center justify-between">
+                <div class="flex -space-x-2">
+                  <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&q=80" alt="Santri 1" class="w-7 h-7 rounded-full object-cover ring-2 ring-white" />
+                  <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=80&q=80" alt="Santri 2" class="w-7 h-7 rounded-full object-cover ring-2 ring-white" />
+                  <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=80&q=80" alt="Santri 3" class="w-7 h-7 rounded-full object-cover ring-2 ring-white" />
+                </div>
+                <span class="px-2 py-1 rounded-full bg-tealBrand text-white text-[10px] font-bold">+320 Perguruan Tinggi</span>
+              </div>
+            </div>
+
+            <!-- Floating Card 4: Bottom-Right 3D Layered Academic Icon -->
+            <div class="animate-float absolute bottom-6 right-4 sm:right-10 z-20 bg-white p-3.5 rounded-2xl shadow-float">
+              <svg class="w-8 h-8" viewBox="0 0 32 32" fill="none">
+                <path d="M16 4L28 10.5L16 17L4 10.5L16 4Z" fill="#5EEAD4"/>
+                <path d="M16 11L28 17.5L16 24L4 17.5L16 11Z" fill="#14B8A6" fill-opacity="0.85"/>
+                <path d="M16 17.5L28 24L16 30L4 24L16 17.5Z" fill="#0B3D2E"/>
+              </svg>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- =====================================================================
+           3. PARTNER / AKREDITASI & KERJA SAMA UNIVERSITAS BAR
+      ====================================================================== -->
+      <div class="max-w-5xl mx-auto px-4 -mt-12 relative z-20">
+        <div class="bg-white rounded-2xl shadow-soft border border-slate-100/90 px-6 sm:px-10 py-6 sm:py-7">
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 sm:gap-8 items-center justify-items-center text-slate-600">
+            
+            <!-- Pendidikan Terpadu -->
+            <div class="flex items-center gap-2 font-heading font-extrabold text-sm tracking-wider text-slate-700 hover:text-tealBrand transition-colors select-none">
+              <i class="fa-solid fa-landmark text-tealBrand"></i>
+              <span>Pendidikan Terpadu</span>
+            </div>
+
+            <!-- UI -->
+            <div class="flex items-center gap-1.5 font-heading font-extrabold text-xl tracking-tight text-slate-700 hover:text-tealBrand transition-colors select-none">
+              <span class="inline-flex items-center justify-center w-6 h-6 bg-amberAccent text-white text-xs rounded-md font-bold">UI</span>
+              <span>Diniyah</span>
+            </div>
+
+            <!-- ITB -->
+            <div class="flex items-center gap-1.5 font-heading font-extrabold text-lg tracking-tight text-slate-700 hover:text-tealBrand transition-colors select-none">
+              <span class="inline-flex items-center justify-center w-6 h-6 bg-tealBrand text-white text-[10px] rounded-md font-bold">ITB</span>
+              <span>Pembinaan Adab</span>
+            </div>
+
+            <!-- Asrama -->
+            <div class="flex items-center gap-1.5 font-heading font-extrabold text-lg text-slate-700 hover:text-tealBrand transition-colors select-none">
+              <i class="fa-solid fa-graduation-cap text-amberAccent"></i>
+              <span>Asrama</span>
+            </div>
+
+            <!-- Teknologi Pembelajaran -->
+            <div class="col-span-2 sm:col-span-1 flex items-center gap-1.5 font-heading font-bold text-sm tracking-tight text-slate-700 hover:text-tealBrand transition-colors select-none">
+              <i class="fa-solid fa-globe text-tealBrand"></i>
+              <span>Teknologi Pembelajaran</span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         4. SECTION "PROGRAM UNGGULAN"
+    ====================================================================== -->
+    <section id="jurusan" class="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      
+      <!-- Decorative Orange Semi-Circle Top-Left -->
+      <div class="hidden md:block absolute top-28 -left-10 w-28 h-28 bg-amberAccent rounded-full opacity-95 pointer-events-none"></div>
+      <!-- Decorative Dark Teal Semi-Circle Bottom-Right -->
+      <div class="hidden md:block absolute bottom-12 -right-8 w-24 h-24 bg-tealBrand rounded-full opacity-95 pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto relative z-10">
+        <!-- Section Heading -->
+        <div class="text-center max-w-2xl mx-auto mb-14">
+          <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-[#1C2B25]">
+            Program Unggulan As-Sadid
+          </h2>
+          <p class="text-[#718096] text-sm sm:text-base mt-3">
+            Program unggulan Tahfidz, Tahsin, serta Lughoh Bahasa Arab dan Inggris untuk membentuk santri yang dekat dengan Al-Qur'an, fasih membaca, dan percaya diri berkomunikasi.
+          </p>
+        </div>
+
+        <!-- 3-Column Program Cards Grid -->
+        <div id="tracksGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Cards rendered dynamically by JavaScript for smooth pagination dot switching -->
+        </div>
+
+        <!-- Carousel Pagination Dots -->
+        <div id="trackDots" class="flex items-center justify-center gap-2.5 mt-12">
+          <button onclick="setTrackPage(0)" aria-label="Program Tahfidzul Qur'an 1" class="track-dot w-6 h-2 rounded-full bg-tealBrand transition-all"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         5. SECTION "FASILITAS & LINGKUNGAN BELAJAR"
+    ====================================================================== -->
+    <section id="fasilitas" class="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-12 items-center">
+          
+          <!-- Left Column: Santri/Teacher + Organic Circle + Floating Badges -->
+          <div class="lg:col-span-6 relative flex justify-center items-center min-h-[380px] sm:min-h-[440px]">
+            
+            <!-- Soft Light Blue Organic Circle -->
+            <div class="absolute w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-[#BCE0F7] bottom-2 left-4 sm:left-10 pointer-events-none"></div>
+
+            <!-- Smiling Santri/Teacher Portrait -->
+            <div class="relative z-10 w-64 sm:w-80 h-[360px] sm:h-[420px] rounded-b-full overflow-hidden flex items-end justify-center">
+              <img
+                src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=85"
+                alt="Guru dan santri belajar di ruang kelas pintar As-Sadid"
+                onerror="this.src='https://placehold.co/600x750/BCE0F7/1A202C?text=Fasilitas+Pondok'"
+                class="w-full h-full object-cover object-top rounded-t-3xl"
+              />
+            </div>
+
+            <!-- Floating Badge 1: Top-Left Digital Library / Lab Card -->
+            <div class="animate-float absolute top-6 left-4 sm:left-10 z-20 bg-white p-3.5 rounded-2xl shadow-float -rotate-12">
+              <div class="w-11 h-9 rounded-lg bg-tealBrand flex items-center justify-center text-white shadow-sm">
+                <i class="fa-solid fa-flask-vial text-sm"></i>
+              </div>
+            </div>
+
+            <!-- Floating Badge 2: Middle-Right Digital Library Pill Card -->
+            <div class="animate-float-delayed absolute top-28 -right-2 sm:right-2 z-20 bg-white px-4 py-3 rounded-2xl shadow-float flex items-center gap-3 w-52 sm:w-60">
+              <div class="w-9 h-9 rounded-full bg-amberAccent-soft text-amberAccent flex items-center justify-center font-heading font-extrabold text-sm shrink-0">
+                <i class="fa-solid fa-book-open"></i>
+              </div>
+              <div class="flex-1">
+                <p class="text-[11px] font-bold text-slate-800">Perpustakaan Digital</p>
+                <p class="text-[10px] text-slate-500 mt-0.5">15.000+ E-Book & Jurnal</p>
+              </div>
+            </div>
+
+            <!-- Floating Badge 3: Bottom-Right UTBK Average Score Chart Card -->
+            <div class="animate-float absolute bottom-6 right-0 sm:right-4 z-20 bg-white p-4 rounded-2xl shadow-float w-52 sm:w-60">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-[11px] font-bold text-slate-700">Rata-rata Nilai UTBK</span>
+                <span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">684.5</span>
+              </div>
+              <svg class="w-full h-14" viewBox="0 0 180 55" fill="none">
+                <defs>
+                  <linearGradient id="amberArea" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#C9A227" stop-opacity="0.45"/>
+                    <stop offset="100%" stop-color="#C9A227" stop-opacity="0.02"/>
+                  </linearGradient>
+                </defs>
+                <path d="M0 45 Q 30 22, 60 30 T 120 16 T 180 6 L 180 55 L 0 55 Z" fill="url(#amberArea)"/>
+                <path d="M0 45 Q 30 22, 60 30 T 120 16 T 180 6" stroke="#C9A227" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Right Column: Decorative Semi-Circle + Heading + Copy + CTA -->
+          <div class="lg:col-span-6 space-y-6 relative">
+            <!-- Decorative Pale Orange Semi-Circle Above Heading -->
+            <div class="w-16 h-8 bg-amberAccent-soft rounded-b-full -rotate-12 mb-4"></div>
+
+            <h2 class="font-heading font-extrabold text-3xl sm:text-4xl lg:text-[2.55rem] leading-[1.2] text-[#1C2B25]">
+              Fasilitas terpadu untuk mendukung pembelajaran dan pembinaan santri
+            </h2>
+
+            <p class="text-[#718096] text-base leading-relaxed max-w-lg">
+              Dilengkapi ruang belajar, perpustakaan, laboratorium pembelajaran, masjid, asrama, lapangan olahraga, dan sarana pembinaan yang mendukung aktivitas santri.
+            </p>
+
+            <div class="pt-2">
+              <button onclick="openVideoModal('Tur Virtual Fasilitas Pondok Modern As-Sadid', 'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=1200&q=80')" class="inline-block bg-tealBrand hover:bg-tealBrand-hover text-white font-semibold text-sm sm:text-base px-8 py-3.5 rounded-full shadow-md hover:shadow-lg transition-all">
+                Lihat Fasilitas
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         6. SECTION "KISAH ALUMNI & PRESTASI"
+    ====================================================================== -->
+    <section id="prestasi" class="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 bg-slateSurface-alt relative overflow-hidden">
+      
+      <!-- Decorative Semi-Circles -->
+      <div class="hidden md:block absolute top-32 -left-10 w-24 h-24 bg-amberAccent rounded-full opacity-90 pointer-events-none"></div>
+      <div class="hidden md:block absolute bottom-6 left-12 w-24 h-12 bg-amberAccent-soft rounded-t-full rotate-12 pointer-events-none"></div>
+      <div class="hidden md:block absolute bottom-8 -right-6 w-16 h-16 bg-tealBrand rounded-full pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto relative z-10">
+        
+        <!-- Header Row -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-12">
+          <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-[#1C2B25]">
+            Cerita Prestasi Santri
+          </h2>
+          <button onclick="showToast('Menampilkan seluruh daftar alumni berprestasi As-Sadid')" class="self-start sm:self-auto bg-tealBrand hover:bg-tealBrand-hover text-white text-sm font-semibold px-7 py-3 rounded-full shadow-sm transition-all">
+            Lihat Semua
+          </button>
+        </div>
+
+        <!-- 2-Column Asymmetric Layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+          
+          <!-- Left Large Featured Alumni Story Card -->
+          <div class="lg:col-span-6 space-y-5 relative">
+            <!-- Small Teal Semi-Circle Accent Behind Corner -->
+            <div class="hidden sm:block absolute -bottom-3 -right-3 w-14 h-14 bg-tealBrand rounded-br-3xl rounded-tl-full z-0"></div>
+
+            <div class="relative z-10 group rounded-3xl overflow-hidden shadow-card bg-white">
+              <div class="relative aspect-[16/10] overflow-hidden bg-slate-200">
+                <img
+                  id="featuredStoryImg"
+                  src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=1000&q=85"
+                  alt="Ahmad Fauzan"
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div class="absolute inset-0 bg-black/15 group-hover:bg-black/25 transition-colors"></div>
+                <button
+                  id="featuredStoryPlayBtn"
+                  onclick="playCurrentFeaturedStory()"
+                  aria-label="Putar kisah alumni utama"
+                  class="absolute inset-0 m-auto w-16 h-16 rounded-full bg-white/95 text-amberAccent shadow-float flex items-center justify-center hover:scale-110 transition-transform"
+                >
+                  <i class="fa-solid fa-play text-lg ml-1"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="pt-1">
+              <div class="flex flex-wrap items-center gap-2.5">
+                <h3 id="featuredStoryName" class="font-heading font-bold text-xl text-[#1C2B25]">
+                  Ahmad Fauzan
+                </h3>
+                <span id="featuredStoryBadge" class="text-xs font-semibold px-3 py-1 rounded-full bg-tealBrand-light text-tealBrand">
+                  Juara Olimpiade Sains Kabupaten
+                </span>
+              </div>
+              <p id="featuredStoryQuote" class="text-[#718096] text-sm sm:text-base leading-relaxed mt-2.5">
+                "Pembinaan intensif di klub riset dan laboratorium informatika As-Sadid membekali saya strategi pemecahan masalah hingga meraih Medali Emas Olimpiade Sains dan lolos seleksi masuk Teknologi Informasi."
+              </p>
+            </div>
+          </div>
+
+          <!-- Right Stacked List of 3 Horizontal Alumni Story Cards -->
+          <div class="lg:col-span-6 space-y-4" id="storyListContainer">
+            <!-- Rendered & interactive via JavaScript -->
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         7. SECTION "PROGRAM WAKAF, SEDEKAH & INFAQ"
+    ====================================================================== -->
+    <section id="wakaf" class="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      <div class="hidden md:block absolute top-16 left-10 w-20 h-20 bg-amberAccent rounded-full opacity-90 pointer-events-none"></div>
+      <div class="hidden md:block absolute bottom-16 right-8 w-24 h-24 bg-tealBrand rounded-full opacity-90 pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto relative z-10">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <p class="text-tealBrand text-sm font-semibold uppercase tracking-widest">Berbagi Kebaikan</p>
+          <h2 class="font-heading font-extrabold text-3xl sm:text-4xl leading-tight text-[#1C2B25] mt-2">
+            Program Wakaf, Sedekah, dan Infaq
+          </h2>
+          <p class="text-[#718096] text-sm sm:text-base mt-4">
+            Bersama-sama mendukung pendidikan dan pembinaan santri melalui amal jariyah yang amanah, transparan, dan berkelanjutan.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          <article class="bg-[#FAF7EF] rounded-3xl p-7 shadow-card border border-[#E6C766]/50 hover:-translate-y-1 transition-transform">
+            <div class="w-12 h-12 rounded-2xl bg-tealBrand text-white flex items-center justify-center mb-5">
+              <i class="fa-solid fa-mosque" aria-hidden="true"></i>
+            </div>
+            <h3 class="font-heading font-bold text-lg text-[#1C2B25]">Wakaf Pendidikan</h3>
+            <p class="text-[#718096] text-sm leading-relaxed mt-3">
+              Dukung pembangunan dan pemeliharaan ruang belajar, masjid, asrama, serta fasilitas pendidikan untuk generasi mendatang.
+            </p>
+            <button type="button" onclick="showToast('Informasi Wakaf Pendidikan akan segera tersedia.')" class="mt-5 text-tealBrand text-sm font-semibold hover:underline">
+              Pelajari Program →
+            </button>
+          </article>
+
+          <article class="bg-[#FAF7EF] rounded-3xl p-7 shadow-card border border-[#E6C766]/50 hover:-translate-y-1 transition-transform">
+            <div class="w-12 h-12 rounded-2xl bg-amberAccent text-white flex items-center justify-center mb-5">
+              <i class="fa-solid fa-hand-holding-heart" aria-hidden="true"></i>
+            </div>
+            <h3 class="font-heading font-bold text-lg text-[#1C2B25]">Sedekah Santri</h3>
+            <p class="text-[#718096] text-sm leading-relaxed mt-3">
+              Ringankan kebutuhan pendidikan dan keseharian santri agar setiap anak dapat belajar, bertumbuh, dan berprestasi.
+            </p>
+            <button type="button" onclick="showToast('Informasi Sedekah Santri akan segera tersedia.')" class="mt-5 text-tealBrand text-sm font-semibold hover:underline">
+              Pelajari Program →
+            </button>
+          </article>
+
+          <article class="bg-[#FAF7EF] rounded-3xl p-7 shadow-card border border-[#E6C766]/50 hover:-translate-y-1 transition-transform">
+            <div class="w-12 h-12 rounded-2xl bg-tealBrand text-white flex items-center justify-center mb-5">
+              <i class="fa-solid fa-user-shield" aria-hidden="true"></i>
+            </div>
+            <h3 class="font-heading font-bold text-lg text-[#1C2B25]">Wali Asuh</h3>
+            <p class="text-[#718096] text-sm leading-relaxed mt-3">
+              Menjadi pendamping kebaikan bagi santri melalui dukungan pendidikan, kebutuhan harian, dan pembinaan agar mereka tumbuh dengan baik.
+            </p>
+            <button type="button" onclick="showToast('Informasi Program Wali Asuh akan segera tersedia.')" class="mt-5 text-tealBrand text-sm font-semibold hover:underline">
+              Pelajari Program →
+            </button>
+          </article>
+        </div>
+
+        <div class="text-center mt-10">
+          <button type="button" onclick="showToast('Terima kasih atas niat baik Anda untuk mendukung As-Sadid.')" class="bg-tealBrand hover:bg-tealBrand-hover text-white font-semibold text-sm px-8 py-3.5 rounded-full shadow-md hover:shadow-lg transition-all">
+            Dukung Program Kebaikan
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         8. SECTION "KATA ORANG TUA & SISWA"
+    ====================================================================== -->
+    <section class="py-20 sm:py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      
+      <!-- Decorative Dark Teal Semi-Circle Top-Left & Pale Orange Semi-Circle Top-Right -->
+      <div class="hidden md:block absolute top-14 left-1/4 -translate-x-24 w-24 h-12 bg-tealBrand rounded-t-full -rotate-45 pointer-events-none"></div>
+      <div class="hidden md:block absolute top-28 right-1/4 translate-x-16 w-14 h-7 bg-amberAccent-soft rounded-t-full rotate-45 pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto relative z-10">
+        <!-- Centered Heading -->
+        <div class="text-center max-w-xl mx-auto mb-16">
+          <h2 class="font-heading font-extrabold text-3xl sm:text-4xl leading-tight text-[#1C2B25]">
+            Apa kata Orang Tua dan Alumni tentang As-Sadid
+          </h2>
+        </div>
+
+        <!-- 3-Column Testimonial Cards -->
+        <div id="testimonialsGrid" class="grid grid-cols-1 md:grid-cols-3 gap-8 pt-4">
+          <!-- Populated by JS -->
+        </div>
+
+        <!-- Testimonial Pagination Dots -->
+        <div id="testimonialDots" class="flex items-center justify-center gap-2.5 mt-12">
+          <button onclick="setTestimonialPage(0)" aria-label="Halaman Testimoni 1" class="testi-dot w-6 h-2 rounded-full bg-tealBrand transition-all"></button>
+          <button onclick="setTestimonialPage(1)" aria-label="Halaman Testimoni 2" class="testi-dot w-2 h-2 rounded-full bg-slate-300 hover:bg-slate-400 transition-all"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         8. SECTION "INFORMASI PENERIMAAN SANTRI & KEGIATAN PONDOK"
+    ====================================================================== -->
+    <section class="py-8 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-6xl mx-auto bg-tealBrand rounded-[2rem] sm:rounded-[2.5rem] px-6 sm:px-14 py-14 sm:py-16 relative overflow-hidden text-center shadow-soft">
+        
+        <!-- Subtle Curved Wave Overlays -->
+        <div class="absolute -top-24 -left-24 w-72 h-72 rounded-full border-[28px] border-white/5 pointer-events-none"></div>
+        <div class="absolute -bottom-28 -right-20 w-80 h-80 rounded-full border-[32px] border-white/5 pointer-events-none"></div>
+        <div class="absolute top-1/2 left-10 w-40 h-40 rounded-full bg-white/[0.03] pointer-events-none"></div>
+
+        <div class="relative z-10 max-w-2xl mx-auto space-y-4">
+          <h2 class="font-heading font-extrabold text-2xl sm:text-4xl text-white">
+            Dapatkan informasi penerimaan santri dan kegiatan As-Sadid
+          </h2>
+          <p class="text-teal-100/90 text-sm sm:text-base">
+            Masukkan alamat email Anda untuk menerima informasi penerimaan santri dan kegiatan pondok.
+          </p>
+
+          <!-- Pill Input + Subscribe Button -->
+          <form id="newsletterForm" class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3 max-w-lg mx-auto">
+            <input
+              type="email"
+              id="newsletterEmail"
+              required
+              placeholder="Masukkan alamat email Anda"
+              class="w-full sm:flex-1 bg-white text-slate-800 placeholder-slate-400 text-sm px-6 py-3.5 rounded-full focus:outline-none focus:ring-4 focus:ring-amberAccent/40 shadow-sm"
+            />
+            <button
+              type="submit"
+              class="w-full sm:w-auto bg-amberAccent hover:bg-amberAccent-hover text-white font-semibold text-sm px-8 py-3.5 rounded-full shadow-md hover:shadow-lg transition-all shrink-0"
+            >
+              Berlangganan
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =====================================================================
+       9. FOOTER
+  ====================================================================== -->
+  <footer class="bg-slateSurface-footer pt-16 pb-10 px-4 sm:px-6 lg:px-8 mt-14 border-t border-slate-100">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 pb-12">
+        
+        <!-- Col 1: Brand, School Address & Social Icons -->
+        <div class="lg:col-span-5 space-y-4">
+          <a href="#beranda" class="inline-flex items-center gap-2.5">
+            <img src="assets/logo.png" alt="Logo Pondok Modern As-Sadid" class="w-12 h-12 object-contain" />
+            <div class="flex flex-col">
+              <span class="font-heading font-extrabold text-lg text-[#1C2B25] leading-none">As-Sadid</span>
+              <span class="text-[10px] font-semibold tracking-widest uppercase text-tealBrand mt-0.5">Pondok Modern</span>
+            </div>
+          </a>
+
+          <p class="text-[#718096] text-sm leading-relaxed max-w-xs">
+            Bareng, Kecamatan Sekar, Kabupaten Bojonegoro, Jawa Timur.<br />
+            Membentuk generasi berilmu, berakhlak, dan berprestasi.
+          </p>
+
+          <!-- Social Media Circular Buttons -->
+          <div class="flex items-center gap-3 pt-2">
+            <a href="#instagram" onclick="event.preventDefault(); showToast('Membuka Instagram resmi @pondok.modern.assadid')" aria-label="Instagram" class="w-9 h-9 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-tealBrand hover:text-white hover:border-tealBrand transition-colors shadow-xs">
+              <i class="fa-brands fa-instagram text-xs"></i>
+            </a>
+            <a href="#youtube" onclick="event.preventDefault(); showToast('Membuka kanal YouTube As-Sadid TV')" aria-label="YouTube" class="w-9 h-9 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-tealBrand hover:text-white hover:border-tealBrand transition-colors shadow-xs">
+              <i class="fa-brands fa-youtube text-xs"></i>
+            </a>
+            <a href="#facebook" onclick="event.preventDefault(); showToast('Membuka halaman Facebook Pondok Modern As-Sadid')" aria-label="Facebook" class="w-9 h-9 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-tealBrand hover:text-white hover:border-tealBrand transition-colors shadow-xs">
+              <i class="fa-brands fa-facebook-f text-xs"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Col 2: Tentang Pondok -->
+        <div class="lg:col-span-2 space-y-3.5">
+          <h4 class="font-heading font-bold text-sm text-[#1C2B25]">Tentang Pondok</h4>
+          <ul class="space-y-2.5 text-sm text-[#718096]">
+            <li><a href="#beranda" class="hover:text-tealBrand transition-colors">Profil Pondok</a></li>
+            <li><a href="#fasilitas" class="hover:text-tealBrand transition-colors">Visi dan Misi</a></li>
+            <li><a href="#fasilitas" class="hover:text-tealBrand transition-colors">Pendidik dan Pengasuh</a></li>
+            <li><a href="#prestasi" class="hover:text-tealBrand transition-colors">Prestasi</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Pendidikan -->
+        <div class="lg:col-span-3 space-y-3.5">
+          <h4 class="font-heading font-bold text-sm text-[#1C2B25]">Pendidikan</h4>
+          <ul class="space-y-2.5 text-sm text-[#718096]">
+            <li><a href="#jurusan" class="hover:text-tealBrand transition-colors">Kalender Pendidikan</a></li>
+            <li><a href="#jurusan" class="hover:text-tealBrand transition-colors">Kegiatan Santri</a></li>
+            <li><a href="#" onclick="event.preventDefault(); openAuthModal('Penerimaan Santri 2026/2027')" class="hover:text-tealBrand transition-colors">Penerimaan Santri</a></li>
+            <li><a href="#prestasi" class="hover:text-tealBrand transition-colors">Berita dan Kegiatan</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Kontak -->
+        <div class="lg:col-span-2 space-y-3.5">
+          <h4 class="font-heading font-bold text-sm text-[#1C2B25]">Kontak</h4>
+          <ul class="space-y-2.5 text-sm text-[#718096]">
+            <li><a href="#newsletterForm" class="hover:text-tealBrand transition-colors">Hubungi Kami</a></li>
+            <li><a href="#" onclick="event.preventDefault(); openAuthModal('Portal Santri')" class="hover:text-tealBrand transition-colors">Layanan Administrasi</a></li>
+            <li><a href="#newsletterForm" class="hover:text-tealBrand transition-colors">Lokasi Pondok</a></li>
+            <li><a href="#newsletterForm" class="hover:text-tealBrand transition-colors">FAQ</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Bottom Divider & Copyright Bar -->
+      <div class="pt-8 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#718096]">
+        <p>Hak Cipta © 2026 Pondok Modern As-Sadid. Seluruh hak cipta dilindungi.</p>
+        <p class="font-medium text-slate-600">Dikelola oleh <span class="font-bold text-[#1C2B25]">Tim IT As-Sadid</span></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =====================================================================
+       INTERACTIVE MODALS & TOAST NOTIFICATION
+  ====================================================================== -->
+
+  <!-- Profil Pondok / Program Preview Modal -->
+  <div id="videoModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/70 backdrop-blur-xs p-4">
+    <div class="bg-white rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl transform transition-all">
+      <div class="flex items-center justify-between px-6 py-4 border-b border-slate-100">
+        <h3 id="videoModalTitle" class="font-heading font-bold text-base sm:text-lg text-slate-800">Profil Pondok Pondok</h3>
+        <button onclick="closeVideoModal()" aria-label="Tutup Modal Video" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="relative aspect-video bg-slate-900 flex items-center justify-center overflow-hidden">
+        <img id="videoModalPoster" src="" alt="Pratinjau Video Pondok" class="w-full h-full object-cover opacity-70" />
+        <div class="absolute inset-0 flex flex-col items-center justify-center text-white text-center p-6 bg-black/40">
+          <div class="w-16 h-16 rounded-full bg-amberAccent text-white flex items-center justify-center shadow-lg mb-3 animate-pulse">
+            <i class="fa-solid fa-play text-xl ml-1"></i>
+          </div>
+          <p class="font-heading font-bold text-lg">Tur Virtual dan Kegiatan Santri As-Sadid</p>
+          <p class="text-xs sm:text-sm text-slate-200 mt-1 max-w-md">
+            Saksikan suasana pembelajaran interaktif di ruang belajar, masjid, asrama, dan kegiatan santri kami.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Auth / Penerimaan Santri Registration Modal -->
+  <div id="authModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/60 backdrop-blur-xs p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-7 shadow-2xl relative">
+      <button onclick="closeAuthModal()" aria-label="Tutup Modal Pendaftaran" class="absolute top-5 right-5 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <h3 id="authModalHeading" class="font-heading font-extrabold text-2xl text-[#1C2B25]">Penerimaan Santri 2026/2027</h3>
+      <p id="authModalSub" class="text-sm text-[#718096] mt-1">Lengkapi data awal calon santri untuk mendapatkan akun seleksi Penerimaan Santri Pondok Modern As-Sadid.</p>
+      <form onsubmit="handleAuthSubmit(event)" class="space-y-4 mt-6">
+        <div id="ppdbNameField">
+          <label class="block text-xs font-semibold text-slate-700 mb-1.5">Nama Lengkap Calon Santri</label>
+          <input type="text" id="santriNameInput" placeholder="Contoh: Muhammad Rizky Pratama" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-tealBrand" />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1.5">Alamat Email / NIS</label>
+          <input type="text" required placeholder="calon.santri@assadid.sch.id" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-tealBrand" />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1.5">Kata Sandi</label>
+          <input type="password" required placeholder="••••••••" class="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-tealBrand" />
+        </div>
+        <button type="submit" id="authSubmitBtn" class="w-full bg-tealBrand hover:bg-tealBrand-hover text-white font-semibold py-3 rounded-full text-sm shadow-md transition-all">
+          Lanjutkan Pendaftaran
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Floating Toast Notification -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 translate-y-20 opacity-0 pointer-events-none transition-all duration-300 bg-[#1C2B25] text-white text-sm font-medium px-5 py-3.5 rounded-2xl shadow-xl flex items-center gap-3">
+    <span class="w-6 h-6 rounded-full bg-tealBrand text-white flex items-center justify-center text-xs shrink-0">
+      <i class="fa-solid fa-check"></i>
+    </span>
+    <span id="toastMessage">Permintaan berhasil diproses!</span>
+  </div>
+
+  <!-- =====================================================================
+       VANILLA JAVASCRIPT INTERACTIVITY
+  ====================================================================== -->
+  <script>
+    // 1. Mobile Navigation Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+    });
+
+    // 2. "Program Pendidikan" Data & Interactive Pagination
+    const trackPages = [
+      [
+        {
+          category: 'TAHFIDZ AL-QURAN',
+          badgeBg: 'bg-emerald-50 text-emerald-700',
+          icon: 'fa-solid fa-book-quran',
+          rating: '5.0',
+          title: 'Tahfidz',
+          desc: 'Program hafalan Al-Qur’an yang terarah melalui setoran, murojaah, dan pendampingan musyrif sesuai kemampuan santri.',
+          duration: 'Terjadwal Harian',
+          courses: 'Pendampingan Musyrif',
+          thumb: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=800&q=80'
+        },
+        {
+          category: 'TAHSIN AL-QURAN',
+          badgeBg: 'bg-amber-50 text-amber-700',
+          icon: 'fa-solid fa-microphone-lines',
+          rating: '4.9',
+          title: 'Tahsin',
+          desc: 'Pembinaan makhraj, tajwid, dan kelancaran membaca Al-Qur’an agar setiap santri membaca dengan benar dan percaya diri.',
+          duration: 'Pembinaan Pekanan',
+          courses: 'Tajwid dan Tilawah',
+          thumb: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800&q=80'
+        },
+        {
+          category: 'LUGHOH',
+          badgeBg: 'bg-blue-50 text-blue-700',
+          icon: 'fa-solid fa-language',
+          rating: '4.9',
+          title: 'Lughoh (Bahasa Arab & Inggris)',
+          desc: 'Pembiasaan bahasa Arab dan Inggris untuk mendukung komunikasi, pemahaman Al-Qur’an, dan wawasan global santri.',
+          duration: 'Pembelajaran Harian',
+          courses: 'Arab dan Inggris',
+          thumb: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80'
+        }
+      ]
+    ];
+    function setTrackPage(pageIdx) {
+      const grid = document.getElementById('tracksGrid');
+      const items = trackPages[pageIdx] || trackPages[0];
+
+      grid.innerHTML = items.map(item => `
+        <article class="bg-[#FAF7EF] rounded-3xl p-4 shadow-card border border-[#E6C766]/50 hover:-translate-y-1.5 hover:shadow-soft transition-all duration-300 flex flex-col justify-between">
+          <div>
+            <!-- Thumbnail with Play Overlay -->
+            <div class="relative rounded-2xl overflow-hidden aspect-[16/10] bg-slate-100 group">
+              <img src="${item.thumb}" alt="${item.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+              <div class="absolute inset-0 bg-black/15 group-hover:bg-black/25 transition-colors"></div>
+              <button
+                onclick="openVideoModal('${item.title}', '${item.thumb}')"
+                aria-label="Lihat video ${item.title}"
+                class="absolute inset-0 m-auto w-11 h-11 rounded-full bg-white/95 text-amberAccent shadow-md flex items-center justify-center hover:scale-110 transition-transform"
+              >
+                <i class="fa-solid fa-play text-xs ml-0.5"></i>
+              </button>
+            </div>
+
+            <!-- Category Tag & Rating Row -->
+            <div class="flex items-center justify-between mt-4 px-1">
+              <div class="flex items-center gap-2">
+                <span class="w-6 h-6 rounded-lg ${item.badgeBg} flex items-center justify-center text-[11px]">
+                  <i class="${item.icon}"></i>
+                </span>
+                <span class="text-[11px] font-bold tracking-wider text-slate-700 uppercase">${item.category}</span>
+              </div>
+              <div class="flex items-center gap-1 text-xs font-bold text-slate-700">
+                <i class="fa-solid fa-star text-amberAccent text-[11px]"></i>
+                <span>${item.rating}</span>
+              </div>
+            </div>
+
+            <!-- Program Title & Description -->
+            <h3 class="font-heading font-bold text-base text-[#1C2B25] mt-2.5 px-1">
+              ${item.title}
+            </h3>
+            <p class="text-[#718096] text-xs sm:text-sm leading-relaxed mt-1.5 px-1">
+              ${item.desc}
+            </p>
+          </div>
+
+          <!-- Card Footer: Jam Pelajaran & Jumlah Mapel -->
+          <div class="mt-5 pt-3.5 px-1 border-t border-dashed border-slate-200 flex items-center justify-between text-xs text-[#718096] font-medium">
+            <span class="flex items-center gap-1.5">
+              <i class="fa-regular fa-clock text-slate-400"></i>
+              ${item.duration}
+            </span>
+            <span class="flex items-center gap-1.5">
+              <i class="fa-solid fa-book-bookmark text-tealBrand"></i>
+              ${item.courses}
+            </span>
+          </div>
+        </article>
+      `).join('');
+
+      // Update pagination dots
+      document.querySelectorAll('.track-dot').forEach((dot, idx) => {
+        if (idx === pageIdx) {
+          dot.classList.remove('w-2', 'bg-slate-300');
+          dot.classList.add('w-6', 'bg-tealBrand');
+        } else {
+          dot.classList.remove('w-6', 'bg-tealBrand');
+          dot.classList.add('w-2', 'bg-slate-300');
+        }
+      });
+    }
+
+    // 3. Interactive Alumni Stories Data & Switcher
+    let featuredStory = {
+      name: 'Ahmad Fauzan',
+      badge: 'Juara Olimpiade Sains Kabupaten',
+      quote: '"Pembinaan intensif di klub riset dan laboratorium informatika As-Sadid membekali saya strategi pemecahan masalah hingga meraih Medali Emas Olimpiade Sains dan lolos seleksi masuk Teknologi Informasi."',
+      img: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=1000&q=85'
+    };
+
+    const sideStories = [
+      {
+        name: 'Aisyah Rahma',
+        badge: 'Juara Musabaqah dan Ketua Organisasi Santri',
+        shortQuote: 'Meraih kesempatan pendidikan di Juara Musabaqah dan Ketua Organisasi Santri. Keseimbangan akademik dan organisasi sangat mendukung cita-cita saya.',
+        fullQuote: '"Pengalaman memimpin OSIS sekaligus mengikuti program pendidikan di As-Sadid melatih manajemen waktu saya hingga berhasil diterima di Pendidikan Dokter Perguruan Tinggi Indonesia."',
+        img: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=600&q=80',
+        bgAccent: 'bg-purple-500'
+      },
+      {
+        name: 'Muhammad Arif',
+        badge: 'Hafiz Al-Quran dan Peraih Beasantri',
+        shortQuote: 'Beasantri Penuh perguruan tinggi luar negeri berkat bimbingan riset dan program bahasa.',
+        fullQuote: '"Guru pembimbing di As-Sadid mendampingi penyusunan esai dan portofolio riset saya sejak kelas XI hingga meraih beasantri penuh di perguruan tinggi luar negeri."',
+        img: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80',
+        bgAccent: 'bg-sky-500'
+      },
+      {
+        name: 'Fatimah Zahra',
+        badge: 'Juara 1 Debat Bahasa Inggris & Hukum Asrama',
+        shortQuote: 'Juara 1 Debat Bahasa Inggris Nasional & Mahasiswi Hukum Asrama. Kegiatan Santri debat mengasah kepercayaan diri saya.',
+        fullQuote: '"Melalui klub debat bahasa Inggris dan program kepemimpinan santri, saya menjuarai kompetisi debat tingkat nasional dan diterima di Fakultas Hukum Perguruan Tinggi Gadjah Mada."',
+        img: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&q=80',
+        bgAccent: 'bg-rose-400'
+      }
+    ];
+
+    function renderSideStories() {
+      const container = document.getElementById('storyListContainer');
+      container.innerHTML = sideStories.map((story, idx) => `
+        <div
+          onclick="swapStory(${idx})"
+          class="bg-white rounded-2xl p-3.5 sm:p-4 shadow-card border border-slate-100 hover:border-tealBrand/40 hover:shadow-soft transition-all cursor-pointer flex items-center gap-4 group"
+        >
+          <div class="relative w-24 h-20 sm:w-28 sm:h-20 rounded-xl overflow-hidden shrink-0 ${story.bgAccent}">
+            <img src="${story.img}" alt="${story.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+            <div class="absolute inset-0 bg-black/15 flex items-center justify-center">
+              <span class="w-7 h-7 rounded-full bg-white/95 text-amberAccent flex items-center justify-center shadow-sm">
+                <i class="fa-solid fa-play text-[10px] ml-0.5"></i>
+              </span>
+            </div>
+          </div>
+          <div class="min-w-0">
+            <h4 class="font-heading font-bold text-sm sm:text-base text-[#1C2B25] group-hover:text-tealBrand transition-colors">
+              ${story.name}
+            </h4>
+            <p class="text-[#718096] text-xs sm:text-sm leading-relaxed line-clamp-2 mt-1">
+              ${story.shortQuote}
+            </p>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function swapStory(idx) {
+      const selected = sideStories[idx];
+      const previousFeatured = {
+        name: featuredStory.name,
+        badge: featuredStory.badge,
+        shortQuote: `${featuredStory.badge}. ${featuredStory.quote.replace(/^"|"$/g, '')}`,
+        fullQuote: featuredStory.quote,
+        img: featuredStory.img,
+        bgAccent: 'bg-amber-400'
+      };
+
+      featuredStory = {
+        name: selected.name,
+        badge: selected.badge,
+        quote: selected.fullQuote,
+        img: selected.img
+      };
+
+      sideStories[idx] = previousFeatured;
+
+      document.getElementById('featuredStoryImg').src = featuredStory.img;
+      document.getElementById('featuredStoryImg').alt = featuredStory.name;
+      document.getElementById('featuredStoryName').textContent = featuredStory.name;
+      document.getElementById('featuredStoryBadge').textContent = featuredStory.badge;
+      document.getElementById('featuredStoryQuote').textContent = featuredStory.quote;
+
+      renderSideStories();
+      showToast(`Menampilkan kisah prestasi ${featuredStory.name}`);
+    }
+
+    function playCurrentFeaturedStory() {
+      openVideoModal(`${featuredStory.name} — ${featuredStory.badge}`, featuredStory.img);
+    }
+
+    // 4. Testimonials Data & Pagination (Orang Tua & Santri)
+    const testimonialPages = [
+      [
+        {
+          name: 'Dr. Hendra Wijaya',
+          role: 'Orang Tua Santri Tingkat Akhir',
+          avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=150&q=80',
+          quote: 'Perhatian para guru terhadap perkembangan akademik dan karakter anak kami sangat luar biasa. Perkembangan belajar transparan dan komunikasi dengan pembimbing selalu responsif.'
+        },
+        {
+          name: 'Aulia Rahmadani',
+          role: 'Santri Kelas XII Teknologi Pembelajaran',
+          avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80',
+          quote: 'Belajar di As-Sadid sangat menyenangkan karena fasilitas laboratorium komputernya lengkap dan guru-guru selalu mendukung setiap proyek aplikasi yang kami buat.'
+        },
+        {
+          name: 'Ibu Ratna Kusuma',
+          role: 'Orang Tua Santri Tingkat Menengah',
+          avatar: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=150&q=80',
+          quote: 'Sejak berpondok di sini, putra kami jauh lebih percaya diri berbicara di depan umum dan aktif dalam kegiatan kepemimpinan santri tanpa meninggalkan prestasi akademik.'
+        }
+      ],
+      [
+        {
+          name: 'Bapak Agus Santoso',
+          role: 'Orang Tua Alumni & Santri Kelas X',
+          avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80',
+          quote: 'Anak pertama kami berhasil lolos Perguruan Tinggi impian berkat bimbingan intensif pondok, sehingga kami tanpa ragu kembali mempercayakan pendidikan adiknya di As-Sadid.'
+        },
+        {
+          name: 'Nabila Putri',
+          role: 'Santri Tingkat Akhir',
+          avatar: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=150&q=80',
+          quote: 'Program persiapan IELTS dan pertukaran pelajar memberi saya wawasan internasional yang luas serta pengalaman berharga sebelum memasuki dunia perkuliahan.'
+        },
+        {
+          name: 'Farhan Alamsyah',
+          role: 'Santri Tingkat Akhir & Ketua Klub Riset',
+          avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80',
+          quote: 'Lingkungan belajar yang suportif dan teman-teman yang kompetitif secara positif membuat saya termotivasi meraih medali di ajang olimpiade sains tingkat provinsi.'
+        }
+      ]
+    ];
+
+    function setTestimonialPage(pageIdx) {
+      const grid = document.getElementById('testimonialsGrid');
+      const items = testimonialPages[pageIdx] || testimonialPages[0];
+
+      grid.innerHTML = items.map(t => `
+        <div class="relative bg-white rounded-3xl p-7 pt-8 shadow-card border border-slate-100 hover:-translate-y-1 transition-transform">
+          <!-- Floating Circular Avatar at Top-Right Corner -->
+          <img
+            src="${t.avatar}"
+            alt="${t.name}"
+            class="w-14 h-14 rounded-full object-cover ring-4 ring-white shadow-md absolute -top-6 right-6"
+          />
+
+          <!-- 5 Yellow Stars -->
+          <div class="flex items-center gap-1 text-amberAccent text-xs mb-4">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+          </div>
+
+          <!-- Quote Text -->
+          <p class="text-[#718096] text-xs sm:text-sm leading-relaxed mb-6">
+            "${t.quote}"
+          </p>
+
+          <!-- Parent / Santri Name & Role -->
+          <div>
+            <h4 class="font-heading font-bold text-sm text-[#1C2B25]">${t.name}</h4>
+            <p class="text-xs text-[#718096] mt-0.5">${t.role}</p>
+          </div>
+        </div>
+      `).join('');
+
+      document.querySelectorAll('.testi-dot').forEach((dot, idx) => {
+        if (idx === pageIdx) {
+          dot.classList.remove('w-2', 'bg-slate-300');
+          dot.classList.add('w-6', 'bg-tealBrand');
+        } else {
+          dot.classList.remove('w-6', 'bg-tealBrand');
+          dot.classList.add('w-2', 'bg-slate-300');
+        }
+      });
+    }
+
+    // 5. Video Modal Controls
+    const videoModal = document.getElementById('videoModal');
+    function openVideoModal(title, posterUrl) {
+      document.getElementById('videoModalTitle').textContent = title;
+      document.getElementById('videoModalPoster').src = posterUrl;
+      videoModal.classList.remove('hidden');
+      videoModal.classList.add('flex');
+    }
+    function closeVideoModal() {
+      videoModal.classList.add('hidden');
+      videoModal.classList.remove('flex');
+    }
+    videoModal.addEventListener('click', (e) => {
+      if (e.target === videoModal) closeVideoModal();
+    });
+
+    // 6. Auth / Penerimaan Santri Modal Controls
+    const authModal = document.getElementById('authModal');
+    function openAuthModal(mode) {
+      const heading = document.getElementById('authModalHeading');
+      const sub = document.getElementById('authModalSub');
+      const nameField = document.getElementById('ppdbNameField');
+      const submitBtn = document.getElementById('authSubmitBtn');
+
+      heading.textContent = mode;
+      if (mode === 'Portal Santri') {
+        sub.textContent = 'Masuk menggunakan NIS atau email pondok untuk mengakses e-Rapor dan materi kelas.';
+        nameField.classList.add('hidden');
+        submitBtn.textContent = 'Masuk ke Portal';
+      } else {
+        sub.textContent = 'Lengkapi data awal calon santri untuk mendapatkan akun seleksi Penerimaan Santri Pondok Modern As-Sadid.';
+        nameField.classList.remove('hidden');
+        submitBtn.textContent = 'Lanjutkan Pendaftaran Penerimaan Santri';
+      }
+
+      authModal.classList.remove('hidden');
+      authModal.classList.add('flex');
+    }
+    function closeAuthModal() {
+      authModal.classList.add('hidden');
+      authModal.classList.remove('flex');
+    }
+    function handleAuthSubmit(e) {
+      e.preventDefault();
+      const mode = document.getElementById('authModalHeading').textContent;
+      closeAuthModal();
+      if (mode === 'Portal Santri') {
+        showToast('Berhasil masuk! Mengalihkan ke Portal Pendidikan Santri...');
+      } else {
+        showToast('Formulir Penerimaan Santri berhasil dibuat! Silakan cek email Anda.');
+      }
+    }
+    authModal.addEventListener('click', (e) => {
+      if (e.target === authModal) closeAuthModal();
+    });
+
+    // 7. Newsletter / Penerimaan Santri Subscription Handler
+    document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const emailInput = document.getElementById('newsletterEmail');
+      if (emailInput.value.trim()) {
+        showToast(`Brosur Penerimaan Santri & info pondok dikirim ke ${emailInput.value}!`);
+        emailInput.value = '';
+      }
+    });
+
+    // 8. Toast Helper
+    let toastTimer;
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastMessage').textContent = message;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 3400);
+    }
+
+    // Initialize Dynamic Sections on Load
+    document.addEventListener('DOMContentLoaded', () => {
+      setTrackPage(0);
+      renderSideStories();
+      setTestimonialPage(0);
+    });
+  </script>
+</body>
+</html>
+
+
+
+
