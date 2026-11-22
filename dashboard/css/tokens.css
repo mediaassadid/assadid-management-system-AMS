@@ -1,0 +1,8 @@
+﻿:root {
+  --emerald: #0B3D2E; --forest: #062A20; --gold: #C9A227; --gold-light: #E6C766;
+  --gold-dark: #8A6D14; --ivory: #FAF7EF; --sand: #F1EBDA; --ink: #1C2B25; --white: #FFFFFF;
+  --muted: #6B7C74; --line: #E8E5DC; --success: #236B52;
+  --shadow-card: 0 12px 32px -8px rgba(15, 23, 42, .08);
+  --shadow-button: 0 8px 18px -8px rgba(11, 61, 46, .5);
+  --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px; --radius-pill: 999px;
+}

@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Dashboard As-Sadid Management System" />
+  <title>Dashboard | AMS As-Sadid</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body>
+
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Navigasi utama">
+      <div class="brand"><img src="../assets/logo.png" alt="Logo As-Sadid" /><div><div class="brand-name">As-Sadid</div><div class="brand-subtitle">Management System</div></div></div>
+      <div class="nav-label">Menu utama</div>
+      <nav class="nav-list">
+        <a class="nav-link active" href="#dashboard" aria-current="page"><span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span>Dashboard</a>
+        <a class="nav-link" href="siswa/index.html"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M16 20v-1.5a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4V20"/><circle cx="9.5" cy="7" r="3.5"/><path d="M17 11a3.5 3.5 0 1 0-1-6.7"/></svg></span>Data Siswa</a>
+        <a class="nav-link" href="#pegawai"><span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2.5"/><path d="M5.5 17c.8-2 2-3 3.5-3s2.7 1 3.5 3M15 9h3.5M15 13h3.5"/></svg></span>Guru & Pegawai</a>
+        <a class="nav-link" href="#unit"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-5h6v5M8 11h.01M12 11h.01M16 11h.01"/></svg></span>Unit Pendidikan</a>
+      </nav>
+      <div class="nav-label">Pengaturan</div>
+      <nav class="nav-list">
+        <a class="nav-link" href="#tahun"><span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg></span>Tahun Ajaran</a>
+        <a class="nav-link" href="#pengguna"><span class="nav-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 21v-1a7 7 0 0 1 14 0v1M19 11.5a3 3 0 0 1 0 5.8"/></svg></span>Pengguna & Akses</a>
+        <a class="nav-link" href="#audit"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M12 8v4l2.5 2.5M20 12a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z"/></svg></span>Log Aktivitas</a>
+      </nav>
+      <div class="sidebar-footer">Tahap 1 &middot; Data mock sementara<br />Pondok Modern As-Sadid</div>
+    </aside>
+
+    <div class="main">
+      <header class="topbar">
+        <div class="topbar-left"><button class="menu-button" id="menuButton" aria-label="Buka navigasi"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><div class="breadcrumb">Beranda <span aria-hidden="true">/</span> <strong>Dashboard</strong></div></div>
+        <div class="topbar-actions"><button class="icon-button" id="notificationButton" aria-label="Notifikasi"><svg viewBox="0 0 24 24"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg><span class="notification-dot"></span></button><div class="profile"><div class="avatar">SA</div><div class="profile-details"><div class="profile-name">Siti Aminah</div><div class="profile-role">Super Admin</div></div></div></div>
+      </header>
+
+      <main class="content" id="dashboard">
+        <section class="page-heading"><div><p class="eyebrow">Ringkasan administrasi</p><h1>Selamat datang, Siti</h1><p class="page-description">Pantau data utama As-Sadid dan kelola aktivitas administrasi dari satu tempat.</p></div><button class="button button-primary" id="addStudentButton">+ Tambah Siswa</button></section>
+
+        <section class="stats-grid" aria-label="Ringkasan data">
+          <article class="card stat-card"><div><div class="stat-label">Total Siswa Aktif</div><div class="stat-value">1.248</div><div class="stat-change">&#8593; 8,4% dari tahun lalu</div></div><div class="stat-icon"><svg viewBox="0 0 24 24"><path d="M16 20v-1.5a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4V20"/><circle cx="9.5" cy="7" r="3.5"/><path d="M17 11a3.5 3.5 0 1 0-1-6.7"/></svg></div></article>
+          <article class="card stat-card"><div><div class="stat-label">Guru & Pegawai</div><div class="stat-value">86</div><div class="stat-change">&#8593; 4,2% dari tahun lalu</div></div><div class="stat-icon gold"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2.5"/><path d="M5.5 17c.8-2 2-3 3.5-3s2.7 1 3.5 3M15 9h3.5M15 13h3.5"/></svg></div></article>
+          <article class="card stat-card"><div><div class="stat-label">Unit Pendidikan</div><div class="stat-value">4</div><div class="stat-change neutral">PAUD hingga SMA</div></div><div class="stat-icon"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-5h6v5M8 11h.01M12 11h.01M16 11h.01"/></svg></div></article>
+          <article class="card stat-card"><div><div class="stat-label">Tahun Ajaran</div><div class="stat-value">2025/26</div><div class="stat-change neutral">Semester Ganjil aktif</div></div><div class="stat-icon gold"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg></div></article>
+        </section>
+
+        <section class="dashboard-grid"><article class="card panel"><div class="panel-heading"><div><h2 class="panel-title">Pertumbuhan siswa</h2><p class="panel-subtitle">Perbandingan jumlah siswa aktif per bulan</p></div><select class="period-select" aria-label="Pilih periode grafik"><option>6 bulan terakhir</option><option>Tahun ajaran ini</option></select></div><div class="bar-chart" aria-label="Grafik pertumbuhan siswa"><div class="bar-item"><div class="bar-group"><div class="bar" style="height:62%"></div><div class="bar secondary" style="height:48%"></div></div><span class="bar-label">Jul</span></div><div class="bar-item"><div class="bar-group"><div class="bar" style="height:68%"></div><div class="bar secondary" style="height:54%"></div></div><span class="bar-label">Agu</span></div><div class="bar-item"><div class="bar-group"><div class="bar" style="height:72%"></div><div class="bar secondary" style="height:58%"></div></div><span class="bar-label">Sep</span></div><div class="bar-item"><div class="bar-group"><div class="bar" style="height:78%"></div><div class="bar secondary" style="height:63%"></div></div><span class="bar-label">Okt</span></div><div class="bar-item"><div class="bar-group"><div class="bar" style="height:84%"></div><div class="bar secondary" style="height:69%"></div></div><span class="bar-label">Nov</span></div><div class="bar-item"><div class="bar-group"><div class="bar" style="height:90%"></div><div class="bar secondary" style="height:74%"></div></div><span class="bar-label">Des</span></div></div><div class="chart-legend"><span class="legend-item"><i class="legend-dot"></i>Siswa aktif</span><span class="legend-item"><i class="legend-dot secondary"></i>Pendaftar baru</span></div></article>
+          <article class="card panel"><div class="panel-heading"><div><h2 class="panel-title">Sebaran siswa</h2><p class="panel-subtitle">Berdasarkan unit pendidikan</p></div></div><div class="distribution"><div class="donut"><div class="donut-center"><span class="donut-total">1.248</span><span class="donut-caption">siswa aktif</span></div></div></div><div class="distribution-list"><div class="distribution-item"><span class="distribution-name"><i class="legend-dot"></i>SD</span><span class="distribution-value">524 <small>(42%)</small></span></div><div class="distribution-item"><span class="distribution-name"><i class="legend-dot" style="background:var(--gold)"></i>SMP</span><span class="distribution-value">349 <small>(28%)</small></span></div><div class="distribution-item"><span class="distribution-name"><i class="legend-dot secondary"></i>SMA</span><span class="distribution-value">225 <small>(18%)</small></span></div><div class="distribution-item"><span class="distribution-name"><i class="legend-dot" style="background:var(--sand)"></i>PAUD/TK</span><span class="distribution-value">150 <small>(12%)</small></span></div></div></article></section>
+
+        <section class="card table-card"><div class="panel-heading"><div><h2 class="panel-title">Aktivitas terbaru</h2><p class="panel-subtitle">Perubahan data terakhir di sistem</p></div><div class="table-tools"><input class="search" id="activitySearch" type="search" placeholder="Cari aktivitas..." aria-label="Cari aktivitas" /><button class="button button-secondary" id="filterButton">Filter</button></div></div><div class="table-scroll"><table><thead><tr><th>Pengguna</th><th>Aktivitas</th><th>Waktu</th><th>Status</th></tr></thead><tbody id="activityBody"><tr><td><div class="person"><span class="person-avatar">RA</span><div><div class="person-name">Rina Ayu</div><div class="person-id">Admin SD</div></div></div></td><td>Menambahkan data siswa baru</td><td>Hari ini, 09:42</td><td><span class="status">Berhasil</span></td></tr><tr><td><div class="person"><span class="person-avatar">BS</span><div><div class="person-name">Budi Santoso</div><div class="person-id">Admin SMP</div></div></div></td><td>Memperbarui data kelas 8A</td><td>Hari ini, 08:15</td><td><span class="status">Berhasil</span></td></tr><tr><td><div class="person"><span class="person-avatar">SA</span><div><div class="person-name">Siti Aminah</div><div class="person-id">Super Admin</div></div></div></td><td>Mengubah hak akses pengguna</td><td>Kemarin, 16:30</td><td><span class="status">Berhasil</span></td></tr><tr><td><div class="person"><span class="person-avatar">DN</span><div><div class="person-name">Dewi Nur</div><div class="person-id">Admin SMA</div></div></div></td><td>Import data siswa</td><td>Kemarin, 14:20</td><td><span class="status pending">Menunggu tinjauan</span></td></tr></tbody></table></div><div class="table-footer"><span>Menampilkan 1-4 dari 24 aktivitas</span><div class="pagination"><button class="page-button active">1</button><button class="page-button">2</button><button class="page-button">3</button><button class="page-button" aria-label="Halaman berikutnya">&#8594;</button></div></div></section>
+
+        <section class="card panel" style="margin-top:24px"><div class="panel-heading"><div><h2 class="panel-title">Aksi cepat</h2><p class="panel-subtitle">Pintasan untuk pekerjaan administrasi umum</p></div></div><div class="quick-actions"><button class="quick-action" data-action="Tambah data siswa"><span class="quick-action-icon"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span><span><strong>Tambah siswa</strong><span>Input data siswa baru</span></span></button><button class="quick-action" data-action="Import data siswa"><span class="quick-action-icon"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 20h14"/></svg></span><span><strong>Import data</strong><span>Unggah data secara massal</span></span></button><button class="quick-action" data-action="Kelola pengguna"><span class="quick-action-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 21v-1a7 7 0 0 1 14 0v1"/></svg></span><span><strong>Kelola pengguna</strong><span>Atur akun dan hak akses</span></span></button></div></section>
+      </main>
+    </div>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script>
+    const sidebar = document.getElementById('sidebar');
+    const toast = document.getElementById('toast');
+    let toastTimer;
+    function showToast(message) { toast.textContent = message; toast.classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove('show'), 2600); }
+    document.getElementById('menuButton').addEventListener('click', () => sidebar.classList.toggle('open'));
+    document.querySelectorAll('.nav-link').forEach(link => link.addEventListener('click', () => sidebar.classList.remove('open')));
+    document.getElementById('notificationButton').addEventListener('click', () => showToast('Anda memiliki 3 notifikasi baru.'));
+    document.getElementById('addStudentButton').addEventListener('click', () => showToast('Form tambah siswa siap digunakan pada modul Data Siswa.'));
+    document.getElementById('filterButton').addEventListener('click', () => showToast('Filter aktivitas akan tersedia pada modul Log Aktivitas.'));
+    document.querySelectorAll('.quick-action').forEach(button => button.addEventListener('click', () => showToast(button.dataset.action + ' akan tersedia pada modul terkait.')));
+    document.querySelectorAll('.page-button').forEach(button => button.addEventListener('click', () => { document.querySelectorAll('.page-button').forEach(item => item.classList.remove('active')); button.classList.add('active'); showToast('Halaman aktivitas ' + button.textContent + ' dipilih.'); }));
+    document.getElementById('activitySearch').addEventListener('input', event => { const query = event.target.value.toLowerCase(); document.querySelectorAll('#activityBody tr').forEach(row => { row.hidden = !row.textContent.toLowerCase().includes(query); }); });
+  </script>
+
+<script src="js/dashboard.js"></script>
+</body>
+</html>
