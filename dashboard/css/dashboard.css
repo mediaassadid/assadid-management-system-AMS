@@ -95,7 +95,10 @@
     .person-id { color: var(--muted); font-size: 9px; }
     .status { display: inline-flex; align-items: center; gap: 6px; font-size: 10px; font-weight: 500; }
     .status::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--success); }
-    .status.pending::before { background: var(--gold); }
+    .status.alumni::before { background: var(--gold); }
+    .status.inactive::before { background: var(--muted); }
+    .status.moved::before { background: var(--gold-dark); }
+    .status.expelled::before { background: #B44A42; }
     .table-footer { display: flex; justify-content: space-between; align-items: center; padding: 18px 24px; color: var(--muted); font-size: 10px; }
     .pagination { display: flex; gap: 6px; }
     .page-button { width: 34px; height: 34px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--white); color: var(--ink); cursor: pointer; }
