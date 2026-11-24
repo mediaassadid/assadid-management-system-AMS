@@ -24,7 +24,7 @@ const navItems = [
   { label: 'Dashboard', href: '/dashboard', icon: 'grid' },
   { label: 'Data Siswa', href: '/dashboard/siswa', icon: 'users' },
   { label: 'Guru & Staff', href: '/dashboard/pegawai', icon: 'staff' },
-  { label: 'Unit Pendidikan', href: '#unit', icon: 'building' },
+  { label: 'Unit Pendidikan', href: '/dashboard/pendidikan', icon: 'building' },
 ];
 
 function Icon({ name }: { name: string }) {
@@ -65,7 +65,7 @@ export default function DashboardPage() {
         </nav>
         <div className="nav-label">Pengaturan</div>
         <nav className="nav-list">
-          {[['Tahun Ajaran', 'calendar', '#tahun'], ['Pengguna & Akses', 'person', '#pengguna'], ['Log Aktivitas', 'clock', '#audit']].map(([label, icon, href]) => <a className="nav-link" href={href} key={label}><span className="nav-icon"><Icon name={icon} /></span>{label}</a>)}
+          {[['Pengguna & Akses', 'person', '#pengguna'], ['Log Aktivitas', 'clock', '#audit']].map(([label, icon, href]) => <a className="nav-link" href={href} key={label}><span className="nav-icon"><Icon name={icon} /></span>{label}</a>)}
         </nav>
         <div className="sidebar-footer">Tahap 1 · Data mock sementara<br />Pondok Modern As-Sadid</div>
       </aside>

@@ -1,0 +1,17 @@
+.user-filters { align-items: end; justify-content: start; gap: 16px; padding-top: 0; }
+.user-filters .field { width: min(230px, 100%); }
+.user-filters .reset-button { margin-bottom: 4px; }
+.status-toggle { border: 0; background: transparent; color: var(--emerald); cursor: pointer; font-size: 10px; font-weight: 600; }
+.status-toggle::before { content: ''; display: inline-block; width: 7px; height: 7px; margin-right: 6px; border-radius: 50%; background: var(--success); }
+.status-toggle.inactive { color: var(--muted); }
+.status-toggle.inactive::before { background: var(--muted); }
+.permission-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; padding: 0 24px 24px; }
+.permission-card { padding: 18px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--ivory); }
+.permission-card h3 { margin: 0 0 4px; color: var(--emerald); font-size: 13px; }
+.permission-card > div > span { color: var(--muted); font-size: 9px; }
+.permission-card ul { display: grid; gap: 8px; margin: 16px 0 0; padding: 0; list-style: none; }
+.permission-card li { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 10px; }
+.permission-card li span { width: 16px; color: var(--muted); font-weight: 700; text-align: center; }
+.permission-card li.granted { color: var(--ink); }
+.permission-card li.granted span { color: var(--success); }
+@media (max-width: 640px) { .user-filters { padding: 0 16px 20px; } .user-filters .field { width: 100%; } .permission-grid { grid-template-columns: 1fr; padding: 0 16px 20px; } }

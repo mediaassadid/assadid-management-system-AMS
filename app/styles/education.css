@@ -1,0 +1,18 @@
+.education-card { overflow: hidden; }
+.education-tabs { display: flex; gap: 4px; overflow-x: auto; padding: 10px 24px 0; border-bottom: 1px solid var(--line); }
+.education-tabs button { min-height: 42px; padding: 0 16px; border: 0; border-bottom: 3px solid transparent; background: transparent; color: var(--muted); font-size: 11px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+.education-tabs button:hover { color: var(--emerald); }
+.education-tabs button.active { color: var(--emerald); border-bottom-color: var(--gold); }
+.education-toolbar { display: flex; align-items: end; justify-content: space-between; gap: 20px; padding: 24px; }
+.education-toolbar .search-wrap { width: min(280px, 100%); }
+.education-form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; padding: 24px 28px; }
+.education-modal { position: fixed; inset: 0; z-index: 20; display: grid; place-items: center; padding: 20px; }
+.education-backdrop { position: absolute; inset: 0; background: rgba(6, 42, 32, .68); backdrop-filter: blur(3px); }
+.education-dialog { position: relative; width: min(700px, 100%); background: var(--white); border-radius: var(--radius-lg); box-shadow: 0 24px 60px rgba(6, 42, 32, .28); overflow: hidden; }
+.education-dialog-header { display: flex; justify-content: space-between; gap: 20px; padding: 24px 28px; border-bottom: 1px solid var(--line); }
+.education-dialog-header h2 { margin: 0 0 5px; font-size: 22px; }
+.education-dialog-header p:not(.eyebrow) { margin: 0; color: var(--muted); font-size: 11px; }
+.education-dialog .form-actions { position: static; }
+.education-form-error { margin: 18px 28px 0; padding: 10px 12px; border: 1px solid #E3B2AD; border-radius: var(--radius-sm); color: #8F352F; background: #FFF3F1; font-size: 10px; }
+.row-action.danger { color: #B44A42; margin-left: 8px; }
+@media (max-width: 640px) { .education-tabs { padding-left: 16px; padding-right: 16px; } .education-toolbar { padding: 20px 16px; align-items: stretch; flex-direction: column; } .education-toolbar .search-wrap { width: 100%; } .education-form-grid { grid-template-columns: 1fr; padding: 20px 16px; } .education-dialog-header { padding: 20px 16px 16px; } .education-dialog .form-actions { padding: 16px; } }

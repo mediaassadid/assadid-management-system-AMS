@@ -4,6 +4,8 @@ import './styles/tokens.css';
 import './styles/dashboard.css';
 import './styles/students.css';
 import './styles/staff.css';
+import './styles/education.css';
+import './styles/users.css';
 
 export const metadata: Metadata = {
   title: 'AMS As-Sadid',
