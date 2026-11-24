@@ -14,6 +14,27 @@ type ProgramCard = {
   thumbnail: string;
 };
 
+const achievementStories = [
+  {
+    name: 'Aisyah Rahma',
+    badge: 'Juara Musabaqah dan Ketua Organisasi Santri',
+    quote: 'Meraih kesempatan pendidikan melalui pembinaan akademik dan organisasi yang seimbang.',
+    image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=600&q=80',
+  },
+  {
+    name: 'Muhammad Arif',
+    badge: 'Hafiz Al-Quran dan Peraih Beasiswa',
+    quote: 'Bimbingan riset dan program bahasa membantu meraih beasiswa penuh di perguruan tinggi luar negeri.',
+    image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80',
+  },
+  {
+    name: 'Fatimah Zahra',
+    badge: 'Juara Debat Bahasa Inggris Nasional',
+    quote: 'Klub debat dan program kepemimpinan santri membangun kepercayaan diri untuk berprestasi.',
+    image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&q=80',
+  },
+];
+
 const programPages: ProgramCard[][] = [[
   {
     category: 'TAHFIDZ AL-QURAN',
@@ -53,6 +74,7 @@ const programPages: ProgramCard[][] = [[
 export default function LandingPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [programPage, setProgramPage] = useState(0);
+  const [activeAchievement, setActiveAchievement] = useState(0);
   const [authMode, setAuthMode] = useState<string | null>(null);
   const [video, setVideo] = useState<{ title: string; poster: string } | null>(null);
   const [toast, setToast] = useState('');
@@ -143,7 +165,7 @@ export default function LandingPage() {
               </button>
               <button onClick={() => setVideo({ title: 'Profil Pondok Pondok Modern As-Sadid', poster: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80' })} className="group flex items-center gap-3.5 text-sm sm:text-base font-semibold text-[#1C2B25] hover:text-tealBrand transition-colors">
                 <span className="w-12 h-12 rounded-full bg-white shadow-card flex items-center justify-center text-amberAccent group-hover:scale-110 transition-transform">
-                  <i className="fa-solid fa-play text-sm ml-0.5" />
+                  <svg aria-hidden="true" viewBox="0 0 24 24" className="w-4 h-4 fill-current ml-0.5"><path d="M8.2 5.3a1 1 0 0 1 1.55-.83l8.1 6.2a1.65 1.65 0 0 1 0 2.66l-8.1 6.2A1 1 0 0 1 8.2 18.7V5.3Z" /></svg>
                 </span>
                 <span>Profil Pondok</span>
               </button>
@@ -285,7 +307,7 @@ export default function LandingPage() {
                   <img src={program.thumbnail} alt={program.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                   <div className="absolute inset-0 bg-black/15 group-hover:bg-black/25 transition-colors" />
                   <button type="button" onClick={() => setVideo({ title: program.title, poster: program.thumbnail })} aria-label={`Lihat video ${program.title}`} className="absolute inset-0 m-auto w-11 h-11 rounded-full bg-white/95 text-amberAccent shadow-md flex items-center justify-center hover:scale-110 transition-transform">
-                    <i className="fa-solid fa-play text-xs ml-0.5" />
+                    <svg aria-hidden="true" viewBox="0 0 24 24" className="w-3.5 h-3.5 fill-current ml-0.5"><path d="M8.2 5.3a1 1 0 0 1 1.55-.83l8.1 6.2a1.65 1.65 0 0 1 0 2.66l-8.1 6.2A1 1 0 0 1 8.2 18.7V5.3Z" /></svg>
                   </button>
                 </div>
                 <div className="flex items-center justify-between mt-4 px-1">
@@ -408,7 +430,7 @@ export default function LandingPage() {
                 <img id="featuredStoryImg" src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=1000&q=85" alt="Ahmad Fauzan" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-black/15 group-hover:bg-black/25 transition-colors" />
                 <button id="featuredStoryPlayBtn" onClick={() => notify('Memutar kisah alumni utama.')} aria-label="Putar kisah alumni utama" className="absolute inset-0 m-auto w-16 h-16 rounded-full bg-white/95 text-amberAccent shadow-float flex items-center justify-center hover:scale-110 transition-transform">
-                  <i className="fa-solid fa-play text-lg ml-1" />
+                  <svg aria-hidden="true" viewBox="0 0 24 24" className="w-6 h-6 fill-current ml-1"><path d="M8.2 5.3a1 1 0 0 1 1.55-.83l8.1 6.2a1.65 1.65 0 0 1 0 2.66l-8.1 6.2A1 1 0 0 1 8.2 18.7V5.3Z" /></svg>
                 </button>
               </div>
             </div>
@@ -428,7 +450,15 @@ export default function LandingPage() {
           </div>
           {/* Right Stacked List of 3 Horizontal Alumni Story Cards */}
           <div className="lg:col-span-6 space-y-4" id="storyListContainer">
-            {/* Rendered & interactive via JavaScript */}
+            {achievementStories.map((story, index) => (
+              <button type="button" key={story.name} onClick={() => { setActiveAchievement(index); notify(`Menampilkan kisah prestasi ${story.name}`); }} className={`w-full text-left bg-white rounded-2xl p-3.5 sm:p-4 shadow-card border hover:border-tealBrand/40 hover:shadow-soft transition-all cursor-pointer flex items-center gap-4 group ${activeAchievement === index ? 'border-tealBrand/50' : 'border-slate-100'}`}>
+                <span className="relative w-24 h-20 sm:w-28 sm:h-20 rounded-xl overflow-hidden shrink-0 bg-slate-100">
+                  <img src={story.image} alt={story.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                  <span className="absolute inset-0 bg-black/15 flex items-center justify-center"><span className="w-7 h-7 rounded-full bg-white/95 text-amberAccent flex items-center justify-center shadow-sm"><svg aria-hidden="true" viewBox="0 0 24 24" className="w-3 h-3 fill-current ml-0.5"><path d="M8.2 5.3a1 1 0 0 1 1.55-.83l8.1 6.2a1.65 1.65 0 0 1 0 2.66l-8.1 6.2A1 1 0 0 1 8.2 18.7V5.3Z" /></svg></span></span>
+                </span>
+                <span className="min-w-0"><span className="block font-heading font-bold text-sm sm:text-base text-[#1C2B25] group-hover:text-tealBrand transition-colors">{story.name}</span><span className="block text-[#718096] text-xs sm:text-sm leading-relaxed line-clamp-2 mt-1">{story.quote}</span></span>
+              </button>
+            ))}
           </div>
         </div>
       </div>
@@ -632,7 +662,7 @@ export default function LandingPage() {
         <img id="videoModalPoster" src={video.poster} alt="Pratinjau Video Pondok" className="w-full h-full object-cover opacity-70" />
         <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center p-6 bg-black/40">
           <div className="w-16 h-16 rounded-full bg-amberAccent text-white flex items-center justify-center shadow-lg mb-3 animate-pulse">
-            <i className="fa-solid fa-play text-xl ml-1" />
+            <svg aria-hidden="true" viewBox="0 0 24 24" className="w-6 h-6 fill-current ml-1"><path d="M8.2 5.3a1 1 0 0 1 1.55-.83l8.1 6.2a1.65 1.65 0 0 1 0 2.66l-8.1 6.2A1 1 0 0 1 8.2 18.7V5.3Z" /></svg>
           </div>
           <p className="font-heading font-bold text-lg">Tur Virtual dan Kegiatan Santri As-Sadid</p>
           <p className="text-xs sm:text-sm text-slate-200 mt-1 max-w-md">

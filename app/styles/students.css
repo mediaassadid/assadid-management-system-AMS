@@ -72,6 +72,16 @@
 
 .student-modal { position: fixed; inset: 0; z-index: 20; display: grid; place-items: center; padding: 20px; }
 .student-modal-backdrop { position: absolute; inset: 0; background: rgba(6, 42, 32, .68); backdrop-filter: blur(3px); }
+.student-modal-dialog-full { width: min(1180px, calc(100vw - 32px)); max-height: calc(100vh - 32px); }
+.student-form-iframe { display: block; width: 100%; height: min(78vh, 760px); border: 0; }
+.modal-close { display: inline-flex; align-items: center; justify-content: center; padding: 0; }
+.modal-close-icon { display: block; width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2.25; stroke-linecap: round; stroke-linejoin: round; }
+.embedded-student-form .content { min-height: auto; padding: 0; }
+.embedded-student-form .page-heading { display: none; }
+.embedded-student-form .student-form-page { border: 0; border-radius: 0; box-shadow: none; overflow: visible; }
+.embedded-student-form .student-modal-header { display: none; }
+.embedded-student-form .form-scroll-nav { position: sticky; top: 0; z-index: 10; background: linear-gradient(180deg, var(--ivory) 0%, #f5efdf 100%); box-shadow: 0 4px 12px rgba(6, 42, 32, .08); }
+
 .student-modal-dialog { position: relative; width: min(980px, 100%); max-height: calc(100vh - 40px); overflow: auto; background: var(--white); border-radius: var(--radius-lg); box-shadow: 0 24px 60px rgba(6, 42, 32, .28); }
 .student-modal-header { display: flex; justify-content: space-between; gap: 24px; padding: 24px 28px; border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 2; background: var(--white); }
 .student-modal-header h2 { margin: 0 0 5px; font-size: 26px; letter-spacing: -.01em; }
