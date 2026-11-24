@@ -21,10 +21,12 @@
 .staff-filters { display: grid; grid-template-columns: minmax(240px, 1fr) 160px 160px auto; align-items: end; gap: 16px; padding: 18px 28px; background: var(--ivory); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .staff-filters > label:not(.search-wrap) { display: flex; flex-direction: column; gap: 5px; min-width: 0; height: 58px; }
 .staff-filters .search-wrap { position: relative; display: flex; flex-direction: column; justify-content: end; align-self: end; height: 58px; }
+.staff-filters .search-wrap svg { top: calc(100% - 20px); transform: translateY(-50%); }
 .staff-filters .search-wrap input, .staff-filters select { width: 100%; height: 40px; border: 1px solid var(--line); border-radius: var(--radius-pill); background: var(--white); color: var(--ink); font: inherit; font-size: 11px; }
-.staff-filters .search-wrap input { padding: 0 38px 0 40px; outline: none; appearance: none; -webkit-appearance: none; line-height: 40px; }
+.staff-filters .search-wrap input { padding: 0 38px 0 40px; outline: none; appearance: none; -webkit-appearance: none; line-height: 1.4; font-weight: 400; caret-color: var(--gold-dark); transition: border-color .15s ease-out, box-shadow .15s ease-out, background .15s ease-out; }
+.staff-filters .search-wrap input:hover { border-color: rgba(11,61,46,.28); }
 .staff-filters .search-wrap input::placeholder { color: var(--muted); opacity: .8; }
-.staff-filters .search-wrap input:focus, .staff-filters select:focus { outline: 2px solid var(--gold-light); outline-offset: 1px; border-color: var(--gold-dark); box-shadow: 0 0 0 3px rgba(230,199,102,.12); }
+.staff-filters .search-wrap input:focus, .staff-filters select:focus { outline: 2px solid var(--gold-light); outline-offset: 1px; border-color: var(--gold-dark); box-shadow: 0 0 0 3px rgba(230,199,102,.12); background: #FFFDF5; }
 .staff-filters .search-wrap input::-webkit-search-cancel-button { width: 16px; height: 16px; margin-right: 2px; opacity: .55; cursor: pointer; }
 .staff-filters .search-wrap input::-webkit-search-decoration { -webkit-appearance: none; }
 .staff-filters .search-wrap svg { position: absolute; left: 14px; width: 17px; height: 17px; overflow: visible; stroke: var(--muted); fill: none; stroke-width: 1.8; pointer-events: none; }
@@ -50,8 +52,8 @@
 .staff-table-card .person-id { color: var(--muted); font-size: 10px; }
 .staff-table-card tbody tr { height: 62px; }
 .staff-table-card .person { white-space: nowrap; }
-.staff-table-card .person-name, .staff-table-card .person-id { display: inline; }
-.staff-table-card .person-id { margin-left: 6px; }
+.staff-table-card .person-name, .staff-table-card .person-id { display: block; }
+.staff-table-card .person-id { margin-top: 3px; margin-left: 0; }
 .staff-table-card .status::before { background: var(--success); }
 .staff-table-card .status.alumni::before { background: var(--gold); }
 .staff-table-card .status.cuti::before { background: var(--gold-dark); }
